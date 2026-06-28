@@ -22,7 +22,7 @@
   var cfg = null, steps = [], idx = 0, answers = {}, captured = false, started = false;
   var shadow, els = {};
 
-  fetch(API + '/m5t/v5/magnet/' + encodeURIComponent(APP_GUID) + '/config')
+  fetch(API + '/m5t/v5/magnet/' + encodeURIComponent(APP_GUID) + '/config?ts=' + Date.now(), { cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(function (data) {
       if (!data || !data.ok) { console.warn('[m5m] magnet config unavailable'); return; }
@@ -174,6 +174,9 @@
     return [
       ':host{all:initial;}',
       '*{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}',
+      // [hidden] must beat the .m5m-panel/.m5m-launcher display rules (author > UA), or the
+      // panel loads open + empty over the launcher and the flow never starts on click.
+      '[hidden]{display:none!important;}',
       '.m5m-launcher{position:fixed;bottom:20px;right:20px;z-index:2147483000;display:flex;align-items:center;gap:10px;border:0;cursor:pointer;background:' + color + ';color:#fff;height:56px;padding:0 20px 0 16px;border-radius:28px;box-shadow:0 6px 20px rgba(0,0,0,.25);}',
       '.m5m-launcher-label{font-size:15px;font-weight:600;}',
       '.m5m-panel{position:fixed;bottom:20px;right:20px;z-index:2147483000;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 40px);background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;}',
