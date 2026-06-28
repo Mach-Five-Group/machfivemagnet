@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bright Dental — Test Magnet Page</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1E293B; }
+    .hero { background: linear-gradient(135deg, #0072BA, #00558D); color: #fff; padding: 80px 24px; text-align: center; }
+    .hero h1 { font-size: 2.6rem; margin: 0 0 12px; }
+    .hero p { font-size: 1.15rem; opacity: .9; margin: 0; }
+    .wrap { max-width: 760px; margin: 48px auto; padding: 0 24px; line-height: 1.7; }
+    .wrap h2 { font-size: 1.6rem; }
+    .note { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px 20px; margin-top: 32px; font-size: .92rem; color: #4A5A78; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Bright Dental</h1>
+    <p>Fast, friendly home-services care — request a quote in seconds.</p>
+  </div>
+  <div class="wrap">
+    <h2>Welcome</h2>
+    <p>This is a mock customer website used to test the Mach Five Magnet embeddable widget. The
+      conversational magnet appears at the bottom-right — click it, answer a few questions, and the
+      captured lead lands in the owning tenant's leads inbox.</p>
+    <div class="note">
+      Test page for the magnet capture loop. The widget below is loaded exactly as a customer would
+      embed it: a single <code>&lt;script&gt;</code> tag with the magnet's id.
+    </div>
+  </div>
+
+  <!-- The embeddable magnet — one script tag, just like a customer would paste on their site. -->
+  <script
+    src="m5m-magnet.js"
+    data-magnet="5d3c76af-9b66-4fc9-9967-58043cb9c522"
+    data-api="https://machfivemagnet-saas.onrender.com"></script>
+</body>
+</html>
