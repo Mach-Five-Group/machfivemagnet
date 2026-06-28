@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Stream Sync Engage</title>
+    <title>Mach Five Magnet</title>
 
         <link rel="stylesheet" href="https://arcanus55.github.io/neodigm55/dist/neodigm55__v5_0.css">
         <script>
@@ -27,10 +27,45 @@ let neodigmOptCustom = { mvvLegit:true, MVV_SPLASH_2_SIGNIN:false, N55_DEBUG_LOG
       })();
     </script>
 
-    <script type="module" crossorigin src="assets/index.js"></script>
-    <link rel="stylesheet" crossorigin href="assets/index.css">
+    <!-- App shell layout — MIRRORS apps/client-saas/index.html (keep in sync). main.js only
+         looks these elements up, so they must exist in the served HTML. The authenticated
+         app is light; #app-shell escapes launCh's dark base so pages render on a light surface. -->
+    <style>
+      #app-shell {
+        min-height: 100vh;
+        background: var(--color-surface, #F4F7FB);
+        color: var(--color-text, #0B1220);
+        color-scheme: light;
+      }
+      #app-shell .page-shell { padding: 40px 48px; }
+      #app-shell.has-side-nav #app-content {
+        margin-left: var(--sidenav-width, 260px);
+        transition: margin-left 0.2s ease;
+      }
+      #app-shell.has-side-nav.nav-collapsed #app-content {
+        margin-left: var(--sidenav-width-collapsed, 68px);
+      }
+      @media (max-width: 768px) {
+        #app-shell.has-side-nav #app-content { margin-left: 0; }
+        #app-shell .page-shell { padding: 24px 20px; }
+        #app-shell.has-side-nav.has-sub-nav #m5t-sub-nav { padding-left: 56px; }
+        #m5t-sub-nav { z-index: 80; }
+      }
+    </style>
+
+    <script type="module" crossorigin src="assets/index_3314adc2.js"></script>
+    <link rel="stylesheet" crossorigin href="assets/index_3314adc2.css">
   </head>
-  <body style="background-color: #181818;">
-    <div id="app" data-sync-env="DEV" data-sync-theme="dark" data-sync-motif="brand" data-sync-lang="en"></div>
+  <body>
+    <div id="app-shell">
+      <!-- Persona-aware left navigation (web component, outside #app so route renders
+           never destroy it). Hidden until an authenticated route shows it. -->
+      <m5t-side-nav id="m5t-side-nav" hidden></m5t-side-nav>
+      <div id="app-content">
+        <!-- Contextual top sub-nav: shown only when the active section has sub-items. -->
+        <m5t-primary-nav id="m5t-sub-nav" data-show-secondary="false" data-hide-logo="true" hidden></m5t-primary-nav>
+        <div id="app" data-sync-env="DEV" data-sync-theme="dark" data-sync-motif="brand" data-sync-lang="en"></div>
+      </div>
+    </div>
   </body>
 </html>
