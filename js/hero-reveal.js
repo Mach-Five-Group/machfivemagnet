@@ -69,6 +69,8 @@
     function tick() {
       if (i >= tokens.length) {
         hero.style.minHeight = "";
+        hero.classList.add("is-done");
+        document.dispatchEvent(new CustomEvent("m5:hero-typed"));
         return;
       }
 
