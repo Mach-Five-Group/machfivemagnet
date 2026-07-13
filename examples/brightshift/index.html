@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Brightshift | Schedules your team actually sees</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23EA580C'/%3E%3Ccircle cx='32' cy='34' r='12' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M32 12v6M50 34h-6M32 56v-6M14 34h6M45 21l-4 4M45 47l-4-4M19 21l4 4M19 47l4-4' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M27 34l4 4 7-8' stroke='white' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#EA580C; --orange-deep:#C2410C; --cream:#FFF7ED; --ink:#1C1917;
+  --warm:#78716C; --peach:#FFEDD5; --line:#F3E8DB;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',system-ui,sans-serif;background:#fff;color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.15}
+/* nav */
+.nav{background:var(--cream);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:1.35rem}
+.nav-links{display:flex;align-items:center;gap:26px;font-weight:700;font-size:.95rem;color:var(--warm)}
+.nav-links a:hover{color:var(--orange-deep)}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;font-weight:800;font-size:1rem;transition:transform .12s, background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-orange{background:var(--orange-deep);color:#fff}
+.btn-orange:hover{background:#9A3412}
+.btn-soft{background:var(--peach);color:var(--orange-deep)}
+/* hero */
+.hero{background:var(--cream);padding:72px 0 84px}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+.kicker{display:inline-block;background:var(--peach);color:var(--orange-deep);font-weight:800;font-size:.85rem;border-radius:999px;padding:7px 16px;margin-bottom:20px}
+h1{font-size:clamp(2.2rem,4.8vw,3.4rem);font-weight:900;margin-bottom:18px}
+h1 .hi{color:var(--orange-deep)}
+.hero p.sub{font-size:1.18rem;color:var(--warm);max-width:520px;margin-bottom:30px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-note{font-size:.9rem;color:var(--warm);margin-top:16px;font-weight:600}
+.hero-photo{position:relative}
+.hero-photo .ph{aspect-ratio:4/3;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(28,25,23,.35)}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.shift-card{position:absolute;left:-18px;bottom:26px;background:#fff;border-radius:16px;box-shadow:0 16px 40px -12px rgba(28,25,23,.3);padding:14px 18px;display:flex;gap:12px;align-items:center;max-width:290px}
+.shift-card .dot{width:40px;height:40px;border-radius:50%;background:var(--peach);color:var(--orange-deep);display:flex;align-items:center;justify-content:center;font-weight:900;flex:none}
+.shift-card .t1{font-weight:800;font-size:.9rem}
+.shift-card .t2{font-size:.8rem;color:var(--warm);font-weight:600}
+.swap-chip{position:absolute;right:-10px;top:24px;background:#fff;border-radius:999px;box-shadow:0 12px 30px -10px rgba(28,25,23,.28);padding:9px 16px;font-size:.82rem;font-weight:800;color:#15803D;display:flex;align-items:center;gap:7px}
+/* features */
+.features{padding:88px 0 64px}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 52px}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:12px}
+.sec-head p{color:var(--warm);font-size:1.08rem}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.f-card{background:var(--cream);border-radius:20px;padding:30px 28px}
+.f-card .ico{width:52px;height:52px;border-radius:14px;background:#fff;box-shadow:0 6px 18px -6px rgba(194,65,12,.25);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.f-card h3{font-size:1.2rem;margin-bottom:10px}
+.f-card p{color:var(--warm);font-size:.96rem;font-weight:600}
+/* industries */
+.industries{background:var(--cream);padding:84px 0}
+.i-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.i-tile{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px -14px rgba(28,25,23,.18)}
+.i-tile .ph{aspect-ratio:4/3;overflow:hidden}
+.i-tile img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.i-tile:hover img{transform:scale(1.04)}
+.i-tile .tx{padding:18px 20px 20px}
+.i-tile h3{font-size:1.05rem;margin-bottom:5px}
+.i-tile p{font-size:.86rem;color:var(--warm);font-weight:600}
+/* demo / inline magnet */
+.demo{padding:92px 0 100px}
+.demo-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.demo-copy{position:sticky;top:100px}
+.demo-copy h2{font-size:clamp(1.7rem,3.2vw,2.3rem);margin-bottom:16px}
+.demo-copy p{color:var(--warm);font-size:1.05rem;margin-bottom:22px}
+.demo-copy ul{list-style:none;margin-bottom:8px}
+.demo-copy li{display:flex;gap:12px;align-items:flex-start;font-weight:700;font-size:.98rem;padding:7px 0}
+.demo-copy li svg{flex:none;margin-top:5px}
+.magnet-slot{background:var(--cream);border-radius:24px;padding:36px;min-height:600px;display:flex;align-items:center;justify-content:center}
+.magnet-slot > div[data-m5m-inline]{width:100%;max-width:640px;min-height:520px}
+/* footer */
+footer{background:var(--ink);color:#D6D3D1;padding:56px 0 40px;font-size:.92rem}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:42px}
+footer .logo{color:#fff;margin-bottom:14px}
+footer h3{color:#fff;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+footer ul{list-style:none}
+footer li{margin-bottom:9px}
+footer a:hover{color:#fff}
+footer p{color:#A8A29E}
+.legal{border-top:1px solid #292524;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.85rem;color:#A8A29E}
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .f-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+  .i-grid{grid-template-columns:1fr 1fr}
+  .demo-grid{grid-template-columns:1fr;gap:40px}
+  .demo-copy{position:static}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links a:not(.btn){display:none}
+  .hero{padding:52px 0 64px}
+  .i-grid{grid-template-columns:1fr}
+  .shift-card{left:8px;bottom:12px}
+  .swap-chip{right:8px;top:12px}
+  .magnet-slot{padding:16px;min-height:560px}
+  .foot-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body id="top">
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Brightshift home">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="34" r="12" fill="none" stroke="#EA580C" stroke-width="5"/><path d="M32 14v6M50 34h-6M32 54v-6M14 34h6M44 22l-4 4M44 46l-4-4M20 22l4 4M20 46l4-4" stroke="#EA580C" stroke-width="5" stroke-linecap="round"/><path d="M27 34l4 4 7-8" stroke="#EA580C" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Brightshift
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#industries">Industries</a>
+      <a href="#demo">Pricing</a>
+      <a href="#demo">Log in</a>
+      <a class="btn btn-orange" href="#demo" style="padding:10px 20px;font-size:.9rem">See a demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Scheduling for hourly teams</span>
+      <h1>Schedules your team <span class="hi">actually sees</span></h1>
+      <p class="sub">Build the week in minutes, publish once, and every shift lands on every phone. Swaps, time off, and coverage gaps sort themselves out before they reach you.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-orange" href="#demo">See it on your schedule</a>
+        <a class="btn btn-soft" href="#features">Explore features</a>
+      </div>
+      <p class="hero-note">Free for teams up to 15. No card, no training day needed.</p>
+    </div>
+    <div class="hero-photo">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=1600&q=80&auto=format&fit=crop" alt="Cafe staff working together behind the counter during a busy shift" width="1600" height="1067">
+      </div>
+      <div class="shift-card">
+        <div class="dot">MJ</div>
+        <div>
+          <div class="t1">Maya picked up Saturday</div>
+          <div class="t2">7:00a to 3:00p &middot; Front of house</div>
+        </div>
+      </div>
+      <div class="swap-chip">
+        <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#15803D" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+        Swap approved
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Less time scheduling, fewer no-shows</h2>
+      <p>Brightshift was built with shift leads, not for them. Three things it takes off your plate this week.</p>
+    </div>
+    <div class="f-grid">
+      <article class="f-card">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3" stroke="#C2410C" stroke-width="2"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#C2410C" stroke-width="2" stroke-linecap="round"/><rect x="6.5" y="12" width="5" height="3" rx="1" fill="#C2410C"/><rect x="12.5" y="16" width="5" height="3" rx="1" fill="#EA580C" opacity=".55"/></svg></div>
+        <h3>Drag and drop shifts</h3>
+        <p>Build the week on a board that already knows availability, roles, and overtime limits. Copy last week and adjust in minutes, not evenings.</p>
+      </article>
+      <article class="f-card">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8h10M17 8l-3-3M17 8l-3 3M17 16H7M7 16l3-3M7 16l3 3" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Swap approvals</h3>
+        <p>Teammates trade shifts from their phones. You approve with one tap, and only when the swap keeps the floor covered and hours in line.</p>
+      </article>
+      <article class="f-card">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2" stroke="#C2410C" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Labor forecasts</h3>
+        <p>See projected labor cost against sales as you build. Brightshift flags the overstaffed Tuesday before payroll does.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="industries" id="industries">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Made for the floor, the line, and the ward</h2>
+      <p>If your people clock in and out, Brightshift speaks their language.</p>
+    </div>
+    <div class="i-grid">
+      <article class="i-tile">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&h=600&q=80&auto=format&fit=crop" alt="Restaurant dining room set for service" width="800" height="600"></div>
+        <div class="tx"><h3>Restaurants</h3><p>Front and back of house, doubles, and the Friday rush.</p></div>
+      </article>
+      <article class="i-tile">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&q=80&auto=format&fit=crop" alt="Clothing displayed on shelves and racks in a retail store" width="800" height="600"></div>
+        <div class="tx"><h3>Retail</h3><p>Seasonal staffing, split shifts, and multi-store teams.</p></div>
+      </article>
+      <article class="i-tile">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&q=80&auto=format&fit=crop" alt="Clinician in a white coat checking messages on a phone" width="800" height="600"></div>
+        <div class="tx"><h3>Healthcare</h3><p>Credential-aware coverage for clinics and care teams.</p></div>
+      </article>
+      <article class="i-tile">
+        <div class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=600&q=80&auto=format&fit=crop" alt="Warehouse aisle with tall stocked racking" width="800" height="600"></div>
+        <div class="tx"><h3>Warehouse and logistics</h3><p>Rotating crews, night shifts, and peak-season surges.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="wrap demo-grid">
+    <div class="demo-copy">
+      <h2>See it on your schedule</h2>
+      <p>Tell us a little about your team and pick a time. We will walk you through Brightshift using a demo schedule built from your answers, so you see your world, not ours.</p>
+      <ul>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#C2410C" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>Takes about a minute, right here on the page</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#C2410C" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>You pick the call time that suits your week</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#C2410C" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>No pressure, no follow-up drip, we promise</li>
+      </ul>
+    </div>
+    <div class="magnet-slot">
+      <div data-m5m-inline></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="34" r="12" fill="none" stroke="#FDBA74" stroke-width="5"/><path d="M32 14v6M50 34h-6M32 54v-6M14 34h6M44 22l-4 4M44 46l-4-4M20 22l4 4M20 46l4-4" stroke="#FDBA74" stroke-width="5" stroke-linecap="round"/><path d="M27 34l4 4 7-8" stroke="#FDBA74" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Brightshift
+        </div>
+        <p>Scheduling for hourly teams.<br>815 West Randolph Street<br>Chicago, IL 60607<br>(312) 555-0119</p>
+      </div>
+      <div>
+        <h3>Product</h3>
+        <ul><li><a href="#features">Scheduling</a></li><li><a href="#features">Swaps</a></li><li><a href="#features">Forecasts</a></li><li><a href="#demo">Pricing</a></li></ul>
+      </div>
+      <div>
+        <h3>Industries</h3>
+        <ul><li><a href="#industries">Restaurants</a></li><li><a href="#industries">Retail</a></li><li><a href="#industries">Healthcare</a></li><li><a href="#industries">Warehouse</a></li></ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul><li><a href="#top">About</a></li><li><a href="#top">Careers</a></li><li><a href="#top">Support</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; 2026 Brightshift, Inc. All rights reserved.</span>
+      <span>Terms &middot; Privacy</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=30d6ade0-b126-4508-b3b9-5421345d3b8c" async></script>
+</body>
+</html>

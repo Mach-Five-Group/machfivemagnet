@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ledgerpine | Client billing that behaves</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23166534'/%3E%3Cpath d='M32 10L18 30h8L16 46h32L38 30h8L32 10z' fill='white'/%3E%3Cpath d='M20 52h24M24 57h16' stroke='white' stroke-width='3' stroke-linecap='round' opacity='.65'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#166534; --pine-deep:#14532D; --sage:#F0FDF4; --ink:#14211A;
+  --gold:#CA8A04; --muted:#52645A; --line:#E3EFE6; --card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.15}
+/* nav */
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav-in{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:.93rem;font-weight:600;color:var(--muted)}
+.nav-links a:hover{color:var(--pine)}
+.btn{display:inline-block;padding:12px 24px;border-radius:10px;font-weight:700;font-size:.95rem}
+.btn-pine{background:var(--pine);color:#fff}
+.btn-pine:hover{background:var(--pine-deep)}
+.btn-line{border:1.5px solid var(--line);color:var(--pine)}
+.btn-line:hover{border-color:var(--pine)}
+/* hero */
+.hero{background:linear-gradient(180deg,var(--sage) 0%,#fff 100%);padding:88px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.kicker{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pine);margin-bottom:16px;display:block}
+h1{font-size:clamp(2.1rem,4.6vw,3.2rem);font-weight:800;margin-bottom:18px}
+.hero p.sub{font-size:1.12rem;color:var(--muted);max-width:500px;margin-bottom:28px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero small{display:block;margin-top:14px;color:var(--muted);font-size:.85rem;font-weight:600}
+/* mock ui shared */
+.mock{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 50px -24px rgba(20,83,45,.25);overflow:hidden}
+.mock-bar{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line);background:#FBFEFB}
+.mock-bar .t{font-weight:800;font-size:.82rem}
+.mock-bar .chip{font-size:.7rem;font-weight:800;color:var(--pine);background:var(--sage);border-radius:999px;padding:3px 10px}
+.mock-body{padding:16px 18px}
+.inv-row{display:flex;justify-content:space-between;align-items:center;padding:11px 4px;border-bottom:1px solid var(--line);font-size:.85rem}
+.inv-row:last-child{border-bottom:none}
+.inv-row .who{font-weight:700}
+.inv-row .meta{font-size:.75rem;color:var(--muted)}
+.pill{font-size:.68rem;font-weight:800;border-radius:999px;padding:3px 10px}
+.pill.paid{background:var(--sage);color:var(--pine)}
+.pill.due{background:#FEF9C3;color:#854D0E}
+.pill.auto{background:#EFF6FF;color:#1D4ED8}
+.amount{font-weight:800;font-variant-numeric:tabular-nums}
+/* sections */
+.deep{padding:76px 0}
+.deep.alt{background:var(--sage)}
+.deep-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.deep-grid.flip .copy{order:2}
+.deep-grid.flip .visual{order:1}
+.copy .n{display:inline-flex;width:34px;height:34px;border-radius:10px;background:var(--pine);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.95rem;margin-bottom:18px}
+.copy h2{font-size:clamp(1.6rem,3vw,2.15rem);font-weight:800;margin-bottom:14px}
+.copy p{color:var(--muted);font-size:1.02rem;margin-bottom:18px}
+.copy ul{list-style:none}
+.copy li{display:flex;gap:11px;align-items:flex-start;font-weight:600;font-size:.95rem;padding:6px 0}
+.copy li svg{flex:none;margin-top:6px}
+/* burn bars */
+.burn-row{padding:12px 4px;border-bottom:1px solid var(--line);font-size:.85rem}
+.burn-row:last-child{border-bottom:none}
+.burn-top{display:flex;justify-content:space-between;font-weight:700;margin-bottom:7px}
+.burn-top .pct{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.burn-bar{height:9px;border-radius:5px;background:var(--line);overflow:hidden}
+.burn-bar i{display:block;height:100%;border-radius:5px;background:var(--pine)}
+.burn-bar i.warn{background:var(--gold)}
+.burn-note{font-size:.72rem;color:var(--muted);margin-top:6px}
+/* portal mock */
+.portal-hd{background:var(--pine);color:#fff;padding:20px 18px}
+.portal-hd .b{font-weight:800;font-size:.95rem}
+.portal-hd .s{font-size:.75rem;opacity:.75}
+.portal-line{display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid var(--line);font-size:.85rem;align-items:center}
+.portal-line:last-child{border-bottom:none}
+.paybtn{display:inline-block;background:var(--pine);color:#fff;font-weight:800;font-size:.78rem;border-radius:8px;padding:8px 16px}
+/* photo quote band */
+.quote-band{padding:76px 0}
+.quote-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+.quote-grid .ph{aspect-ratio:3/2;border-radius:18px;overflow:hidden}
+.quote-grid img{width:100%;height:100%;object-fit:cover}
+blockquote{font-size:1.35rem;font-weight:700;line-height:1.5;letter-spacing:-.01em}
+blockquote span{color:var(--pine)}
+.attr{margin-top:18px;color:var(--muted);font-size:.92rem;font-weight:600}
+/* metrics */
+.metrics{background:var(--pine-deep);color:#fff;padding:64px 0}
+.m-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.m-grid .n{font-size:2.1rem;font-weight:800;letter-spacing:-.02em}
+.m-grid .n span{color:#86EFAC}
+.m-grid .l{font-size:.85rem;color:#BBF7D0;margin-top:4px}
+/* plans */
+.plans{padding:84px 0}
+.sec-head{text-align:center;max-width:600px;margin:0 auto 48px}
+.sec-head h2{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:800;margin-bottom:12px}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.p-card{border:1px solid var(--line);border-radius:16px;padding:30px 28px;background:#fff}
+.p-card.mid{background:var(--sage);border-color:#BBF7D0}
+.p-card h3{font-size:1.1rem;font-weight:800}
+.p-card .for{font-size:.85rem;color:var(--muted);margin:4px 0 16px}
+.p-card .pr{font-size:2rem;font-weight:800}
+.p-card .pr span{font-size:.9rem;font-weight:600;color:var(--muted)}
+.p-card ul{list-style:none;margin:18px 0 4px}
+.p-card li{font-size:.9rem;color:var(--muted);font-weight:600;padding:4px 0;display:flex;gap:10px}
+.p-card li svg{flex:none;margin-top:5px}
+.plans-note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:28px;font-weight:600}
+/* faq */
+.faq{background:var(--sage);padding:80px 0 88px}
+.faq-in{max-width:740px;margin:0 auto}
+.faq h2{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:800;text-align:center;margin-bottom:36px}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:12px}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';color:var(--pine);font-size:1.3rem;font-weight:600;flex:none}
+details[open] summary::after{content:'\2212'}
+details p{margin-top:12px;color:var(--muted);font-size:.95rem}
+/* footer */
+footer{background:var(--ink);color:#9DB0A4;padding:56px 0 40px;font-size:.9rem}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:42px}
+footer .logo{color:#fff;margin-bottom:14px}
+footer h3{color:#fff;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+footer ul{list-style:none}
+footer li{margin-bottom:9px}
+footer a:hover{color:#fff}
+.legal{border-top:1px solid #24352B;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.85rem}
+@media(max-width:960px){
+  .hero-grid,.deep-grid,.quote-grid{grid-template-columns:1fr;gap:40px}
+  .deep-grid.flip .copy{order:1}
+  .deep-grid.flip .visual{order:2}
+  .m-grid{grid-template-columns:1fr 1fr}
+  .p-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links a:not(.btn){display:none}
+  .hero{padding:56px 0 52px}
+  .foot-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body id="top">
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Ledgerpine home">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8L18 28h8L16 44h32L38 28h8L32 8z" fill="#166534"/><path d="M20 51h24M25 57h14" stroke="#166534" stroke-width="3.5" stroke-linecap="round" opacity=".5"/></svg>
+      Ledgerpine
+    </a>
+    <div class="nav-links">
+      <a href="#product">Product</a>
+      <a href="#plans">Pricing</a>
+      <a href="#customers">Customers</a>
+      <a href="#plans">Log in</a>
+      <a class="btn btn-pine" href="#plans" style="padding:10px 18px;font-size:.88rem">Start free trial</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Billing for agencies and studios</span>
+      <h1>Retainers, invoices, and client billing that behaves</h1>
+      <p class="sub">Ledgerpine sends the invoice, tracks the retainer, chases the late payer politely, and posts it all where your clients can see it. Quietly, every month, without you.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-pine" href="#product">See how it works</a>
+        <a class="btn btn-line" href="#plans">View plans</a>
+      </div>
+      <small>14-day trial. Your first three invoices are on us.</small>
+    </div>
+    <div class="mock" role="img" aria-label="Ledgerpine invoice dashboard showing this month's invoices and their statuses">
+      <div class="mock-bar"><span class="t">March invoicing</span><span class="chip">12 of 14 paid</span></div>
+      <div class="mock-body">
+        <div class="inv-row"><div><div class="who">Hollis &amp; Grey Creative</div><div class="meta">INV-0341 &middot; monthly retainer</div></div><div style="text-align:right"><div class="amount">$6,500</div><span class="pill paid">Paid in 4 days</span></div></div>
+        <div class="inv-row"><div><div class="who">Fernwell Coffee Roasters</div><div class="meta">INV-0342 &middot; brand refresh, milestone 2</div></div><div style="text-align:right"><div class="amount">$4,200</div><span class="pill paid">Paid in 6 days</span></div></div>
+        <div class="inv-row"><div><div class="who">Copperline Outfitters</div><div class="meta">INV-0343 &middot; monthly retainer</div></div><div style="text-align:right"><div class="amount">$3,800</div><span class="pill auto">Autopay on the 1st</span></div></div>
+        <div class="inv-row"><div><div class="who">Marlowe Dental Group</div><div class="meta">INV-0344 &middot; site maintenance</div></div><div style="text-align:right"><div class="amount">$950</div><span class="pill due">Reminder sent</span></div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="deep" id="product">
+  <div class="wrap deep-grid">
+    <div class="copy">
+      <span class="n">1</span>
+      <h2>Recurring invoices that send themselves</h2>
+      <p>Set the schedule once. Ledgerpine generates the invoice, applies the right rate card, attaches the period summary, and sends it on the day you chose. Late payers get a courteous nudge on day 7 and a firmer one on day 14, in your voice, not ours.</p>
+      <ul>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Monthly, quarterly, or milestone schedules per client</li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Autopay by card or bank debit, with receipts filed</li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Reminder sequences you write once and never think about again</li>
+      </ul>
+    </div>
+    <div class="visual">
+      <div class="mock" role="img" aria-label="Recurring invoice schedule showing upcoming automated sends">
+        <div class="mock-bar"><span class="t">Upcoming sends</span><span class="chip">Automated</span></div>
+        <div class="mock-body">
+          <div class="inv-row"><div><div class="who">Apr 1 &middot; 6 retainer invoices</div><div class="meta">$28,400 total &middot; 4 on autopay</div></div><span class="pill auto">Scheduled</span></div>
+          <div class="inv-row"><div><div class="who">Apr 1 &middot; Fernwell milestone 3</div><div class="meta">On approval of deliverable</div></div><span class="pill due">Waiting</span></div>
+          <div class="inv-row"><div><div class="who">Apr 7 &middot; reminder pass</div><div class="meta">Anything unpaid gets nudge one</div></div><span class="pill auto">Scheduled</span></div>
+          <div class="inv-row"><div><div class="who">Apr 15 &middot; quarterly true-up</div><div class="meta">Copperline Outfitters, Q1 overage</div></div><span class="pill auto">Scheduled</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="deep alt">
+  <div class="wrap deep-grid flip">
+    <div class="copy">
+      <span class="n">2</span>
+      <h2>Retainer burn you can see coming</h2>
+      <p>Every retainer shows hours logged against hours sold, live. When a client crosses 80 percent with a week left in the cycle, the account lead hears about it before it becomes an awkward writedown.</p>
+      <ul>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Burn alerts at thresholds you set per client</li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Overage flows to next month's invoice automatically</li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Imports time from the trackers your team already uses</li>
+      </ul>
+    </div>
+    <div class="visual">
+      <div class="mock" role="img" aria-label="Retainer burn tracking showing hours used per client this cycle">
+        <div class="mock-bar"><span class="t">Retainer burn &middot; March</span><span class="chip">8 days left</span></div>
+        <div class="mock-body">
+          <div class="burn-row">
+            <div class="burn-top"><span>Hollis &amp; Grey Creative</span><span class="pct">31 of 40 hrs</span></div>
+            <div class="burn-bar"><i class="warn" style="width:78%"></i></div>
+            <div class="burn-note">Trending 12% over. Account lead notified Tuesday.</div>
+          </div>
+          <div class="burn-row">
+            <div class="burn-top"><span>Copperline Outfitters</span><span class="pct">14 of 30 hrs</span></div>
+            <div class="burn-bar"><i style="width:47%"></i></div>
+            <div class="burn-note">On pace. No action needed.</div>
+          </div>
+          <div class="burn-row">
+            <div class="burn-top"><span>Marlowe Dental Group</span><span class="pct">6 of 10 hrs</span></div>
+            <div class="burn-bar"><i style="width:60%"></i></div>
+            <div class="burn-note">On pace. No action needed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="deep">
+  <div class="wrap deep-grid">
+    <div class="copy">
+      <span class="n">3</span>
+      <h2>A client portal that ends the "can you resend that invoice" email</h2>
+      <p>Each client gets a clean, branded page with every invoice, every receipt, and a working pay button. They stop emailing you for copies, and your books stop depending on whose inbox remembers what.</p>
+      <ul>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Your logo, your colors, your domain</li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Clients see retainer balance and history without asking</li>
+        <li><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Pay by card or bank transfer in two clicks</li>
+      </ul>
+    </div>
+    <div class="visual">
+      <div class="mock" role="img" aria-label="Client portal view showing invoice history and a pay button">
+        <div class="portal-hd">
+          <div class="b">Hollis &amp; Grey Creative</div>
+          <div class="s">Client portal &middot; powered by your studio</div>
+        </div>
+        <div class="mock-body">
+          <div class="portal-line"><div><div class="who" style="font-weight:700">Retainer balance</div><div class="meta" style="font-size:.75rem;color:var(--muted)">March cycle, renews Apr 1</div></div><span class="amount">9 hrs left</span></div>
+          <div class="portal-line"><div><div class="who" style="font-weight:700">INV-0341 &middot; March retainer</div><div class="meta" style="font-size:.75rem;color:var(--muted)">Issued Mar 1</div></div><span class="pill paid">Paid</span></div>
+          <div class="portal-line"><div><div class="who" style="font-weight:700">INV-0353 &middot; print production</div><div class="meta" style="font-size:.75rem;color:var(--muted)">Issued Mar 18 &middot; $1,240</div></div><span class="paybtn">Pay now</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band" id="customers">
+  <div class="wrap quote-grid">
+    <div class="ph">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1600&q=80&auto=format&fit=crop" alt="Quiet studio desk with a laptop, coffee, and handwritten notes" width="1600" height="1067">
+    </div>
+    <div>
+      <blockquote>"We ran billing out of a spreadsheet and a shared inbox for six years. Ledgerpine gave us back the first week of every month. <span>Our average days-to-paid went from 24 to 8.</span>"</blockquote>
+      <p class="attr">Dana Okafor &middot; Operations lead, twelve-person brand studio, Portland</p>
+    </div>
+  </div>
+</section>
+
+<section class="metrics" aria-label="Ledgerpine by the numbers">
+  <div class="wrap m-grid">
+    <div><div class="n">2.1M<span>+</span></div><div class="l">invoices sent through Ledgerpine</div></div>
+    <div><div class="n">9.4 <span>days</span></div><div class="l">average days-to-paid, vs 23 industry-wide</div></div>
+    <div><div class="n">$840M</div><div class="l">collected for agencies last year</div></div>
+    <div><div class="n">96<span>%</span></div><div class="l">of reminders resolved without a human follow-up</div></div>
+  </div>
+</section>
+
+<section class="plans" id="plans">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Plans that match how you bill</h2>
+      <p>Every plan includes unlimited invoices and the client portal. Pricing follows your roster, not your revenue.</p>
+    </div>
+    <div class="p-grid">
+      <article class="p-card">
+        <h3>Solo</h3>
+        <p class="for">Freelancers and independents</p>
+        <div class="pr">$19<span> / month</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Up to 10 active clients</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Recurring invoices and reminders</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>1 retainer template</li>
+        </ul>
+      </article>
+      <article class="p-card mid">
+        <h3>Studio</h3>
+        <p class="for">Most agencies land here</p>
+        <div class="pr">$49<span> / month</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Up to 50 active clients</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Retainer burn tracking and alerts</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Branded client portals on your domain</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Time-tracker imports</li>
+        </ul>
+      </article>
+      <article class="p-card">
+        <h3>Agency</h3>
+        <p class="for">Multi-team and multi-brand shops</p>
+        <div class="pr">$119<span> / month</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Unlimited clients and brands</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Role-based approvals and audit trail</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" stroke="#166534" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>Accounting sync and revenue reports</li>
+        </ul>
+      </article>
+    </div>
+    <p class="plans-note">Not sure which fits? The panel on this page will size it for you in under a minute.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap faq-in">
+    <h2>Fair questions</h2>
+    <details>
+      <summary>Does Ledgerpine replace my accounting software?</summary>
+      <p>No, and it does not try to. Ledgerpine handles the client-facing side: invoices, retainers, reminders, and payments. It syncs cleanly into your general ledger so your accountant keeps their tools and you keep your evenings.</p>
+    </details>
+    <details>
+      <summary>What does payment processing cost?</summary>
+      <p>Card payments are 2.9% plus 30 cents, bank debit is 0.8% capped at $5. Ledgerpine adds no markup on top of processor rates, on any plan.</p>
+    </details>
+    <details>
+      <summary>Can I migrate invoices from my current tool?</summary>
+      <p>Yes. Import clients, open invoices, and payment history via CSV, or let our onboarding team run the migration with you on a call. Most studios are fully moved in an afternoon.</p>
+    </details>
+    <details>
+      <summary>Do my clients need an account to pay?</summary>
+      <p>No. The portal link works without a login, and paying an invoice takes two clicks. Clients can optionally save a payment method for autopay on retainers.</p>
+    </details>
+    <details>
+      <summary>What happens if I go over my client limit?</summary>
+      <p>Nothing abrupt. We flag it in the app, give you a 30-day grace period, and suggest the next tier. Billing never blocks your billing.</p>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8L18 28h8L16 44h32L38 28h8L32 8z" fill="#4ADE80"/><path d="M20 51h24M25 57h14" stroke="#4ADE80" stroke-width="3.5" stroke-linecap="round" opacity=".5"/></svg>
+          Ledgerpine
+        </div>
+        <p>Billing that behaves, for agencies and studios.<br>1420 Fifth Avenue, Suite 2200<br>Seattle, WA 98101<br>(206) 555-0173</p>
+      </div>
+      <div>
+        <h3>Product</h3>
+        <ul><li><a href="#product">Recurring invoices</a></li><li><a href="#product">Retainers</a></li><li><a href="#product">Client portal</a></li><li><a href="#plans">Pricing</a></li></ul>
+      </div>
+      <div>
+        <h3>Resources</h3>
+        <ul><li><a href="#customers">Customers</a></li><li><a href="#plans">Migration guide</a></li><li><a href="#plans">Help center</a></li></ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul><li><a href="#top">About</a></li><li><a href="#top">Careers</a></li><li><a href="#top">Security</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; 2026 Ledgerpine, Inc. All rights reserved.</span>
+      <span>Terms &middot; Privacy &middot; DPA</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=9f9b8f42-c1e1-4ba2-84a3-6dc8b2525c2a" async></script>
+</body>
+</html>

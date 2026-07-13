@@ -54,7 +54,7 @@
   // Auto-bind any image with data-lightbox attribute
   // Skip images inside carousels (they bind via their own JS)
   document.querySelectorAll('[data-lightbox]').forEach(function (img) {
-    if (img.closest('[data-features-carousel]')) {
+    if (img.closest('[data-features-carousel], [data-walkthrough]')) {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', function () {
         open(img.src, img.alt, img.dataset.lightbox || img.alt);

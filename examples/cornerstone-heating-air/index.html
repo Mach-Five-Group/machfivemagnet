@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cornerstone Heating &amp; Air | Same-Day HVAC Service in the Denver Metro</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%23C2410C'/%3E%3Ctext x='24' y='34' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --flame: #C2410C;
+    --flame-dark: #9A3412;
+    --steel: #1E293B;
+    --steel-deep: #16202F;
+    --gray: #F5F5F4;
+    --ink: #1C1917;
+    --muted: #57534E;
+    --line: #E7E5E4;
+    --cond: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body); color: var(--ink); background: #FFFFFF;
+    line-height: 1.6; font-size: 17px;
+  }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  /* Utility bar */
+  .utility { background: var(--steel-deep); color: #E2E8F0; font-size: 14px; font-weight: 500; }
+  .utility .wrap {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; padding-top: 8px; padding-bottom: 8px;
+  }
+  .utility .emergency { display: flex; align-items: center; gap: 8px; }
+  .utility .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #FB923C; flex: none;
+  }
+  .utility strong { color: #FDBA74; font-weight: 700; letter-spacing: 0.02em; }
+  .utility .hours { color: #94A3B8; }
+
+  /* Nav */
+  header.site { background: #FFFFFF; border-bottom: 3px solid var(--flame); }
+  header.site .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; padding-bottom: 14px; gap: 20px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo svg { flex: none; }
+  .logo .text .name {
+    font-family: var(--cond); font-weight: 700; font-size: 30px;
+    color: var(--steel); letter-spacing: 0.05em; line-height: 1; display: block;
+  }
+  .logo .text .strap {
+    font-family: var(--cond); font-weight: 600; font-size: 14.5px;
+    color: var(--flame); letter-spacing: 0.33em; display: block; margin-top: 2px;
+  }
+  nav.primary { display: flex; gap: 28px; align-items: center; }
+  nav.primary a {
+    font-family: var(--cond); font-weight: 600; font-size: 18px;
+    letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+    color: var(--steel);
+  }
+  nav.primary a:hover { color: var(--flame); }
+
+  /* Hero */
+  .hero { background: var(--gray); border-bottom: 1px solid var(--line); }
+  .hero .wrap {
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px;
+    align-items: center; padding-top: 72px; padding-bottom: 80px;
+  }
+  .chip {
+    display: inline-block; background: var(--steel); color: #FDBA74;
+    font-family: var(--cond); font-weight: 600; font-size: 15px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 7px 16px; margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: var(--cond); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(44px, 5.6vw, 72px); line-height: 0.98;
+    color: var(--steel); letter-spacing: 0.01em;
+  }
+  .hero h1 .accent { color: var(--flame); }
+  .hero p.lede { margin-top: 22px; font-size: 18.5px; color: var(--muted); max-width: 520px; }
+  .hero .ctas { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    font-family: var(--cond); font-weight: 700; font-size: 19px;
+    letter-spacing: 0.09em; text-transform: uppercase; padding: 15px 30px;
+  }
+  .btn.flame { background: var(--flame); color: #FFF7ED; }
+  .btn.flame:hover { background: var(--flame-dark); }
+  .btn.outline { border: 2px solid var(--steel); color: var(--steel); padding: 13px 28px; }
+  .btn.outline:hover { background: var(--steel); color: #F5F5F4; }
+  .hero .fast-note {
+    margin-top: 26px; font-size: 15px; color: var(--muted);
+    border-left: 4px solid var(--flame); padding: 8px 0 8px 16px; max-width: 480px;
+  }
+  .hero .fast-note strong { color: var(--ink); }
+  .hero-media { position: relative; }
+  .hero-media figure {
+    aspect-ratio: 4 / 3; overflow: hidden;
+    box-shadow: 12px 12px 0 var(--flame);
+  }
+  .hero-media img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-media .badge {
+    position: absolute; left: -18px; bottom: -26px;
+    background: var(--steel); color: #F5F5F4; padding: 16px 22px;
+    font-family: var(--cond); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .hero-media .badge .big { font-size: 27px; font-weight: 700; color: #FDBA74; line-height: 1.05; display: block; }
+  .hero-media .badge .small { font-size: 14.5px; font-weight: 600; }
+
+  /* Trust row */
+  .trust { background: #FFFFFF; }
+  .trust .wrap {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    padding-top: 30px; padding-bottom: 30px;
+  }
+  .trust .item {
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 600; font-size: 15.5px; color: var(--steel);
+  }
+  .trust .tick {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--flame); color: #FFF; display: flex;
+    align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
+  }
+
+  /* Sections */
+  section.band { padding: 80px 0; }
+  .kicker {
+    font-family: var(--cond); font-weight: 600; font-size: 16px;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--flame);
+    margin-bottom: 8px;
+  }
+  h2.section-title {
+    font-family: var(--cond); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(34px, 4vw, 50px); line-height: 1.02; color: var(--steel);
+  }
+  .section-intro { margin-top: 14px; color: var(--muted); max-width: 620px; font-size: 17.5px; }
+
+  /* Services */
+  .services { background: var(--gray); border-top: 1px solid var(--line); }
+  .service-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 44px;
+  }
+  .service {
+    background: #FFFFFF; border: 1px solid var(--line); border-top: 5px solid var(--flame);
+    padding: 34px 32px 30px;
+  }
+  .service h3 {
+    font-family: var(--cond); font-weight: 700; font-size: 28px;
+    text-transform: uppercase; color: var(--steel); letter-spacing: 0.03em;
+  }
+  .service .price {
+    font-size: 14px; font-weight: 700; color: var(--flame);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;
+  }
+  .service p.desc { margin-top: 12px; color: var(--muted); font-size: 16px; }
+  .service ul { list-style: none; margin-top: 16px; }
+  .service li {
+    padding: 8px 0 8px 26px; position: relative; font-size: 15.5px;
+    border-top: 1px solid var(--gray); font-weight: 500;
+  }
+  .service li::before {
+    content: "✓"; position: absolute; left: 2px; top: 8px;
+    color: var(--flame); font-weight: 700;
+  }
+
+  /* Mid band */
+  .midband { background: var(--steel); color: #E2E8F0; }
+  .midband .wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding-top: 80px; padding-bottom: 80px;
+  }
+  .midband figure { aspect-ratio: 4 / 3; overflow: hidden; }
+  .midband img { width: 100%; height: 100%; object-fit: cover; }
+  .midband h2 { color: #F5F5F4; }
+  .midband .kicker { color: #FDBA74; }
+  .midband p { color: #CBD5E1; margin-top: 14px; font-size: 17px; max-width: 520px; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 36px; margin-top: 38px; }
+  .stat .num {
+    font-family: var(--cond); font-weight: 700; font-size: 44px;
+    color: #FDBA74; line-height: 1;
+  }
+  .stat .label { font-size: 14.5px; margin-top: 6px; color: #CBD5E1; }
+
+  /* Service area */
+  .area .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+  .towns {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 20px; margin-top: 32px;
+  }
+  .towns span {
+    font-weight: 600; font-size: 15.5px; color: var(--steel);
+    padding: 8px 0 8px 24px; position: relative; border-bottom: 1px solid var(--line);
+  }
+  .towns span::before {
+    content: ""; position: absolute; left: 2px; top: 16px;
+    width: 10px; height: 10px; background: var(--flame);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+  .area .ask-note { margin-top: 26px; font-size: 15px; color: var(--muted); }
+  .area figure { aspect-ratio: 4 / 3; overflow: hidden; box-shadow: -12px 12px 0 var(--gray); }
+  .area img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Reviews */
+  .reviews { background: var(--gray); border-top: 1px solid var(--line); }
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 44px; }
+  .review { background: #FFFFFF; border: 1px solid var(--line); padding: 30px 28px; }
+  .review .stars { color: var(--flame); font-size: 18px; letter-spacing: 3px; }
+  .review blockquote { margin-top: 14px; font-size: 16.5px; color: var(--ink); line-height: 1.55; }
+  .review .who {
+    margin-top: 18px; font-family: var(--cond); font-weight: 600; font-size: 16.5px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* Financing */
+  .financing { background: var(--flame); color: #FFF7ED; }
+  .financing .wrap {
+    padding-top: 72px; padding-bottom: 72px; text-align: center;
+    max-width: 860px;
+  }
+  .financing h2 {
+    font-family: var(--cond); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(32px, 4vw, 46px); line-height: 1.05;
+  }
+  .financing p { margin-top: 18px; font-size: 18px; color: #FFEDD5; }
+  .financing .terms {
+    display: inline-block; margin-top: 28px; background: rgba(255,255,255,0.14);
+    padding: 12px 26px; font-family: var(--cond); font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; font-size: 17px;
+  }
+  .financing .fine { margin-top: 20px; font-size: 13px; color: #FED7AA; }
+
+  /* Footer */
+  footer.site { background: var(--steel-deep); color: #94A3B8; font-size: 14.5px; }
+  footer.site .cols {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px;
+    padding: 60px 0 44px;
+  }
+  footer.site .fname {
+    font-family: var(--cond); font-weight: 700; font-size: 26px;
+    color: #F5F5F4; letter-spacing: 0.05em;
+  }
+  footer.site .fstrap {
+    font-family: var(--cond); font-weight: 600; font-size: 13px;
+    color: #FDBA74; letter-spacing: 0.33em; margin-top: 2px;
+  }
+  footer.site p { margin-top: 14px; max-width: 320px; line-height: 1.7; }
+  footer.site h4 {
+    font-family: var(--cond); color: #E2E8F0; font-size: 16px;
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; font-weight: 600;
+  }
+  footer.site ul { list-style: none; }
+  footer.site li { padding: 4px 0; }
+  footer.site a { color: #CBD5E1; text-decoration: none; }
+  footer.site a:hover { color: #F5F5F4; }
+  .footer-bottom {
+    border-top: 1px solid rgba(148,163,184,0.22);
+    padding: 20px 0 24px; font-size: 13px; color: #7C8DA3;
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero .wrap { gap: 36px; }
+    .trust .wrap { grid-template-columns: repeat(2, 1fr); }
+    .review-grid { grid-template-columns: 1fr 1fr; }
+    .review:last-child { grid-column: 1 / -1; }
+    footer.site .cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; padding-top: 52px; padding-bottom: 64px; }
+    .hero-media .badge { left: 12px; bottom: -20px; }
+    .midband .wrap, .area .wrap { grid-template-columns: 1fr; gap: 36px; }
+    .service-grid { grid-template-columns: 1fr; }
+    nav.primary { display: none; }
+    header.site .wrap { justify-content: center; }
+    .utility .wrap { justify-content: center; flex-wrap: wrap; }
+    .utility .hours { display: none; }
+  }
+  @media (max-width: 640px) {
+    .review-grid { grid-template-columns: 1fr; }
+    .review:last-child { grid-column: auto; }
+    .towns { grid-template-columns: 1fr 1fr; }
+    .trust .wrap { grid-template-columns: 1fr; gap: 12px; }
+    footer.site .cols { grid-template-columns: 1fr; gap: 30px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    section.band { padding: 60px 0; }
+    .stats { grid-template-columns: 1fr; gap: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="utility">
+  <div class="wrap">
+    <span class="emergency"><span class="dot" aria-hidden="true"></span>24/7 emergency line: <strong>(303) 555-0177</strong></span>
+    <span class="hours">Mon to Sat, 7 AM to 6 PM · Emergency crews around the clock</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Cornerstone Heating and Air, home">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <path d="M22 4 L40 20 L36 20 L36 40 L8 40 L8 20 L4 20 Z" fill="#1E293B"/>
+        <path d="M22 16 C26 21 27 24 27 27 A5.5 5.5 0 0 1 16.5 27 C16.5 23.5 19 20 22 16 Z" fill="#C2410C"/>
+      </svg>
+      <span class="text">
+        <span class="name">CORNERSTONE</span>
+        <span class="strap">HEATING &amp; AIR</span>
+      </span>
+    </a>
+    <nav class="primary" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#service-area">Service Area</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#financing">Financing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="chip">Denver metro · Same-day service</span>
+        <h1>No heat? No cooling? <span class="accent">We are on it today.</span></h1>
+        <p class="lede">Cornerstone techs arrive in a stocked truck, quote the fix before opening a panel, and leave your home the temperature it should be. Most repairs are done in one visit.</p>
+        <div class="ctas">
+          <a class="btn flame" href="#services">Services and pricing</a>
+          <a class="btn outline" href="#service-area">Check your town</a>
+        </div>
+        <p class="fast-note"><strong>Fastest way in:</strong> the chat in the corner. Tell us what is going on, drop your ZIP, and pick a service window. We confirm by text.</p>
+      </div>
+      <div class="hero-media">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1660330589693-99889d60181e?w=1600&q=80&auto=format&fit=crop" alt="Technician in a high-visibility shirt servicing an outdoor HVAC disconnect box" fetchpriority="high">
+        </figure>
+        <div class="badge">
+          <span class="big">90 min</span>
+          <span class="small">Avg. emergency response</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Why homeowners choose Cornerstone">
+    <div class="wrap">
+      <div class="item"><span class="tick" aria-hidden="true">✓</span>Licensed and insured</div>
+      <div class="item"><span class="tick" aria-hidden="true">✓</span>Same-day service</div>
+      <div class="item"><span class="tick" aria-hidden="true">✓</span>Upfront pricing</div>
+      <div class="item"><span class="tick" aria-hidden="true">✓</span>Background-checked techs</div>
+    </div>
+  </section>
+
+  <section class="band services" id="services">
+    <div class="wrap">
+      <p class="kicker">What we do</p>
+      <h2 class="section-title">Heating and cooling, handled</h2>
+      <p class="section-intro">Every visit starts with a straight diagnosis and a written price. You approve it before a single part comes off the truck.</p>
+      <div class="service-grid">
+        <article class="service">
+          <h3>Repair</h3>
+          <p class="price">$89 diagnostic, applied to your repair</p>
+          <p class="desc">Furnaces, ACs, heat pumps, and boilers. If it heats or cools a house, we fix it.</p>
+          <ul>
+            <li>Most repairs finished the same visit</li>
+            <li>Trucks stocked for the common failures</li>
+            <li>Two-year labor warranty on every repair</li>
+          </ul>
+        </article>
+        <article class="service">
+          <h3>Maintenance &amp; tune-ups</h3>
+          <p class="price">Seasonal plans from $16/month</p>
+          <p class="desc">Twice-a-year checkups that catch failures in October, not on the coldest night in January.</p>
+          <ul>
+            <li>21-point inspection, photos included</li>
+            <li>Filter, coil, and burner service</li>
+            <li>Priority scheduling for plan members</li>
+          </ul>
+        </article>
+        <article class="service">
+          <h3>New systems</h3>
+          <p class="price">Free in-home estimates</p>
+          <p class="desc">Right-sized replacements with honest math on efficiency, not the biggest unit on the price sheet.</p>
+          <ul>
+            <li>Load calculation on every quote</li>
+            <li>Installation usually within three days</li>
+            <li>Permits and haul-away included</li>
+          </ul>
+        </article>
+        <article class="service">
+          <h3>Water heaters</h3>
+          <p class="price">Same-day replacements available</p>
+          <p class="desc">Tank and tankless, repaired or replaced, with the code upgrades your inspector wants to see.</p>
+          <ul>
+            <li>40 to 75 gallon tanks and tankless</li>
+            <li>Expansion tanks and valves to code</li>
+            <li>Old unit hauled away, no fee</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="midband">
+    <div class="wrap">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1651474738521-efacfb201039?w=1600&q=80&auto=format&fit=crop" alt="Residential air conditioning condenser unit outside a home during a rain shower" loading="lazy">
+      </figure>
+      <div>
+        <p class="kicker">The Cornerstone standard</p>
+        <h2 class="section-title">Fixed right the first time</h2>
+        <p>We have been keeping Denver metro homes comfortable since 2004. Our techs are employees, not subcontractors, and every job gets checked against the same standard: would we sign off on this in our own house?</p>
+        <div class="stats">
+          <div class="stat"><p class="num">12,400+</p><p class="label">Homes served across the metro</p></div>
+          <div class="stat"><p class="num">4.9</p><p class="label">Average review score</p></div>
+          <div class="stat"><p class="num">2004</p><p class="label">Family-owned since</p></div>
+          <div class="stat"><p class="num">100%</p><p class="label">Written quotes before work starts</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band area" id="service-area">
+    <div class="wrap">
+      <div>
+        <p class="kicker">Service area</p>
+        <h2 class="section-title">Where we work</h2>
+        <p class="section-intro">Based in Arvada, dispatching across the Denver metro. Inside this list, same-day is the norm, not the exception.</p>
+        <div class="towns">
+          <span>Denver</span><span>Arvada</span><span>Wheat Ridge</span>
+          <span>Golden</span><span>Lakewood</span><span>Westminster</span>
+          <span>Broomfield</span><span>Thornton</span><span>Northglenn</span>
+          <span>Aurora</span><span>Centennial</span><span>Littleton</span>
+          <span>Englewood</span><span>Highlands Ranch</span><span>Parker</span>
+        </div>
+        <p class="ask-note">On the edge of the map? Ask in the chat and we will confirm your address in a minute.</p>
+      </div>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1600&q=80&auto=format&fit=crop" alt="Two-story suburban home with a wraparound porch and green lawn" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="band reviews" id="reviews">
+    <div class="wrap">
+      <p class="kicker">Reviews</p>
+      <h2 class="section-title">What the neighbors say</h2>
+      <div class="review-grid">
+        <article class="review">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>Furnace quit on the coldest night in January. A tech was here by nine the next morning and we had heat back before lunch.</blockquote>
+          <p class="who">Dana · Lakewood</p>
+        </article>
+        <article class="review">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>They quoted the price before opening a single panel. I paid exactly what was on the paper.</blockquote>
+          <p class="who">Marcus · Thornton</p>
+        </article>
+        <article class="review">
+          <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>Two other companies told me to replace the AC. Cornerstone tuned it up instead, and it has run fine for two summers since.</blockquote>
+          <p class="who">Irene · Centennial</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="financing" id="financing">
+    <div class="wrap">
+      <p class="kicker" style="color:#FED7AA;">Financing</p>
+      <h2>A new system should not wait on a lump sum</h2>
+      <p>Zero percent financing for 18 months on approved credit, or fixed monthly plans up to 60 months. Decisions usually come back in minutes, and your installer handles the paperwork on site.</p>
+      <span class="terms">0% for 18 months · Plans to 60 months</span>
+      <p class="fine">Subject to credit approval. Ask your tech for current terms when you book.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="fname">CORNERSTONE</p>
+        <p class="fstrap">HEATING &amp; AIR</p>
+        <p>Family-owned heating and cooling for the Denver metro since 2004. Repairs, tune-ups, new systems, and water heaters, done right the first time.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>7420 Ironwood Court, Unit B</li>
+          <li>Arvada, CO 80002</li>
+          <li>(303) 555-0177</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li>Mon to Sat: 7 AM to 6 PM</li>
+          <li>Sunday: emergency only</li>
+          <li>Emergency line: 24/7</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#service-area">Service area</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#financing">Financing</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cornerstone Heating &amp; Air. All rights reserved.</span>
+      <span>Licensed and insured Colorado HVAC contractor.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=867c4d60-4c13-4909-9225-d4533f127426" async></script>
+</body>
+</html>

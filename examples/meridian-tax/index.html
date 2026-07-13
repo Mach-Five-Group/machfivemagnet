@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Meridian Tax &amp; Advisory | Books, Taxes, and Payroll, Handled</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='6' fill='%231E40AF'/%3E%3Ctext x='24' y='34' font-family='Arial,sans-serif' font-size='27' font-weight='bold' fill='%23F8FAFC' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1E40AF;
+    --blue-deep: #1E3A8A;
+    --linen: #F8FAFC;
+    --ink: #0F172A;
+    --muted: #475569;
+    --green: #047857;
+    --line: #E2E8F0;
+    --sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans); color: var(--ink); background: #FFFFFF;
+    line-height: 1.6; font-size: 16.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+  /* Nav */
+  header.site { background: #FFFFFF; border-bottom: 1px solid var(--line); }
+  header.site .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 18px; padding-bottom: 16px; gap: 20px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo svg { flex: none; }
+  .logo .text .name {
+    display: block; font-weight: 800; font-size: 21px; letter-spacing: 0.14em;
+    color: var(--ink); line-height: 1.05;
+  }
+  .logo .text .strap {
+    display: block; font-weight: 600; font-size: 10.5px; letter-spacing: 0.3em;
+    color: var(--blue); margin-top: 3px;
+  }
+  nav.primary { display: flex; gap: 28px; align-items: center; }
+  nav.primary a {
+    text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500;
+  }
+  nav.primary a:hover { color: var(--blue); }
+  nav.primary a.login {
+    color: var(--blue); border: 1.5px solid var(--blue);
+    padding: 8px 18px; border-radius: 4px; font-weight: 600;
+  }
+  nav.primary a.login:hover { background: var(--blue); color: #FFFFFF; }
+
+  /* Hero */
+  .hero { background: var(--linen); border-bottom: 1px solid var(--line); }
+  .hero .wrap {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center;
+    padding-top: 72px; padding-bottom: 80px;
+  }
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-weight: 800; font-size: clamp(36px, 4.8vw, 58px);
+    line-height: 1.06; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .hero h1 .blue { color: var(--blue); }
+  .hero p.lede { margin-top: 22px; font-size: 18px; color: var(--muted); max-width: 520px; }
+  .hero .ctas { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px;
+    padding: 14px 28px; border-radius: 4px;
+  }
+  .btn.blue { background: var(--blue); color: #FFFFFF; }
+  .btn.blue:hover { background: var(--blue-deep); }
+  .btn.quiet { color: var(--blue); border: 1.5px solid var(--line); background: #FFFFFF; }
+  .btn.quiet:hover { border-color: var(--blue); }
+  .hero-media figure {
+    aspect-ratio: 4 / 3; overflow: hidden; border-radius: 6px;
+    border: 1px solid var(--line); border-bottom: 4px solid var(--green);
+  }
+  .hero-media img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-media figcaption {
+    margin-top: 10px; font-size: 13px; color: var(--muted); text-align: right;
+  }
+
+  /* Numbers strip */
+  .numbers { background: #FFFFFF; border-bottom: 1px solid var(--line); }
+  .numbers .wrap {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    padding-top: 0; padding-bottom: 0;
+  }
+  .numbers .cell {
+    padding: 30px 24px; border-left: 1px solid var(--line);
+  }
+  .numbers .cell:first-child { border-left: 0; padding-left: 0; }
+  .numbers .num { font-weight: 800; font-size: 32px; color: var(--blue); line-height: 1.1; }
+  .numbers .label { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  /* Sections */
+  section.band { padding: 84px 0; }
+  .kicker {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 12px;
+  }
+  h2.section-title {
+    font-weight: 800; font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.12; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .section-intro { margin-top: 14px; color: var(--muted); max-width: 620px; font-size: 17px; }
+
+  /* Services */
+  .services { background: #FFFFFF; }
+  .service-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--line); border: 1px solid var(--line);
+    margin-top: 44px; border-radius: 6px; overflow: hidden;
+  }
+  .service { background: #FFFFFF; padding: 36px 34px 32px; }
+  .service .tag {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue);
+  }
+  .service h3 { font-weight: 700; font-size: 22px; margin-top: 8px; color: var(--ink); }
+  .service p { margin-top: 10px; color: var(--muted); font-size: 15.5px; }
+  .service ul { list-style: none; margin-top: 16px; }
+  .service li {
+    padding: 8px 0 8px 26px; position: relative; font-size: 15px;
+    border-top: 1px solid var(--linen); color: var(--ink);
+  }
+  .service li::before {
+    content: ""; position: absolute; left: 2px; top: 15px;
+    width: 12px; height: 12px; border: 2px solid var(--green);
+    border-radius: 2px; box-sizing: border-box;
+  }
+
+  /* Engagement steps */
+  .engage { background: var(--linen); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .engage .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .engage figure {
+    aspect-ratio: 4 / 3; overflow: hidden; border-radius: 6px; border: 1px solid var(--line);
+  }
+  .engage img { width: 100%; height: 100%; object-fit: cover; }
+  .steps { margin-top: 36px; }
+  .step {
+    display: grid; grid-template-columns: 64px 1fr; gap: 20px;
+    padding: 22px 0; border-top: 1px solid var(--line);
+  }
+  .step .n {
+    font-weight: 800; font-size: 26px; color: var(--blue);
+  }
+  .step h3 { font-weight: 700; font-size: 19px; color: var(--ink); }
+  .step p { color: var(--muted); font-size: 15.5px; margin-top: 4px; }
+
+  /* Industries */
+  .industries .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); margin-top: 44px;
+    border-radius: 6px; overflow: hidden;
+  }
+  .industry { background: #FFFFFF; padding: 26px 28px; }
+  .industry h3 { font-weight: 700; font-size: 17px; color: var(--ink); }
+  .industry p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  /* Resources */
+  .resources { background: var(--linen); border-top: 1px solid var(--line); }
+  .resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+  .resource {
+    background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px;
+    padding: 30px 28px;
+  }
+  .resource .tag {
+    display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green); background: #ECFDF5;
+    padding: 4px 10px; border-radius: 3px;
+  }
+  .resource h3 { font-weight: 700; font-size: 18.5px; margin-top: 14px; color: var(--ink); }
+  .resource p { font-size: 14.5px; color: var(--muted); margin-top: 8px; }
+
+  /* Contact / inline magnet */
+  .contact { background: #FFFFFF; border-top: 1px solid var(--line); }
+  .contact .head { text-align: center; max-width: 640px; margin: 0 auto; }
+  .contact .head .section-intro { margin-left: auto; margin-right: auto; }
+  .magnet-slot {
+    max-width: 680px; margin: 44px auto 0; min-height: 560px;
+    background: var(--linen); border: 1px solid var(--line); border-radius: 8px;
+    padding: 20px; display: flex; align-items: flex-start; justify-content: center;
+  }
+  .magnet-slot > div[data-m5m-inline] { width: 100%; min-height: 520px; }
+  .contact .reassure {
+    display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+    margin-top: 26px; font-size: 14px; color: var(--muted);
+  }
+  .contact .reassure span { display: flex; align-items: center; gap: 8px; }
+  .contact .reassure .mark { color: var(--green); font-weight: 700; }
+
+  /* Footer */
+  footer.site { background: var(--ink); color: #94A3B8; font-size: 14.5px; }
+  footer.site .cols {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; padding: 56px 0 42px;
+  }
+  footer.site .fname {
+    font-weight: 800; font-size: 19px; letter-spacing: 0.14em; color: #F8FAFC;
+  }
+  footer.site .fstrap {
+    font-weight: 600; font-size: 10.5px; letter-spacing: 0.3em; color: #93C5FD; margin-top: 3px;
+  }
+  footer.site p { margin-top: 14px; max-width: 320px; line-height: 1.7; }
+  footer.site h4 {
+    color: #E2E8F0; font-size: 12.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; margin-bottom: 14px; font-weight: 700;
+  }
+  footer.site ul { list-style: none; }
+  footer.site li { padding: 4px 0; }
+  footer.site a { color: #CBD5E1; text-decoration: none; }
+  footer.site a:hover { color: #F8FAFC; }
+  .footer-bottom {
+    border-top: 1px solid rgba(148,163,184,0.22); padding: 20px 0 24px;
+    font-size: 13px; color: #64748B;
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero .wrap { gap: 40px; }
+    .numbers .wrap { grid-template-columns: repeat(2, 1fr); }
+    .numbers .cell:nth-child(3) { border-left: 0; padding-left: 0; }
+    .numbers .cell { border-top: 1px solid var(--line); }
+    .numbers .cell:nth-child(-n+2) { border-top: 0; }
+    .industries .grid { grid-template-columns: 1fr 1fr; }
+    .resource-grid { grid-template-columns: 1fr 1fr; }
+    .resource:last-child { grid-column: 1 / -1; }
+    footer.site .cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; padding-top: 52px; padding-bottom: 64px; }
+    .service-grid { grid-template-columns: 1fr; }
+    .engage .cols { grid-template-columns: 1fr; gap: 36px; }
+    nav.primary { display: none; }
+    header.site .wrap { justify-content: center; }
+  }
+  @media (max-width: 640px) {
+    .industries .grid { grid-template-columns: 1fr; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .resource:last-child { grid-column: auto; }
+    .numbers .wrap { grid-template-columns: 1fr; }
+    .numbers .cell { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+    .numbers .cell:first-child { border-top: 0; }
+    footer.site .cols { grid-template-columns: 1fr; gap: 30px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    section.band { padding: 60px 0; }
+    .magnet-slot { padding: 10px; min-height: 540px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Meridian Tax and Advisory, home">
+      <svg width="42" height="42" viewBox="0 0 42 42" aria-hidden="true">
+        <circle cx="21" cy="21" r="19" fill="none" stroke="#1E40AF" stroke-width="2.4"/>
+        <path d="M21 2 C13 12 13 30 21 40 C29 30 29 12 21 2 Z" fill="none" stroke="#1E40AF" stroke-width="1.6"/>
+        <line x1="2" y1="21" x2="40" y2="21" stroke="#047857" stroke-width="1.6"/>
+      </svg>
+      <span class="text">
+        <span class="name">MERIDIAN</span>
+        <span class="strap">TAX &amp; ADVISORY</span>
+      </span>
+    </a>
+    <nav class="primary" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#resources">Resources</a>
+      <a class="login" href="#contact">Client login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Accounting for owner-operated businesses</p>
+        <h1>Your books, taxes, and payroll. <span class="blue">Handled.</span></h1>
+        <p class="lede">Meridian runs the financial back office for more than two hundred small businesses: clean monthly books, returns filed early, payroll that never misses. You run the business. The numbers arrive done.</p>
+        <div class="ctas">
+          <a class="btn blue" href="#contact">Start intake</a>
+          <a class="btn quiet" href="#services">See services</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1600&q=80&auto=format&fit=crop" alt="Tax forms, a calculator, and a cup of coffee arranged on a desk" fetchpriority="high">
+          <figcaption>Filing season, under control.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers" aria-label="Firm by the numbers">
+    <div class="wrap">
+      <div class="cell">
+        <p class="num">214</p>
+        <p class="label">Businesses on monthly bookkeeping</p>
+      </div>
+      <div class="cell">
+        <p class="num">9</p>
+        <p class="label">States filed in the 2025 season</p>
+      </div>
+      <div class="cell">
+        <p class="num">5</p>
+        <p class="label">CPAs and enrolled agents on staff</p>
+      </div>
+      <div class="cell">
+        <p class="num">0</p>
+        <p class="label">Missed payroll runs since 2019</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band services" id="services">
+    <div class="wrap">
+      <p class="kicker">Services</p>
+      <h2 class="section-title">Four services. One steady monthly rhythm.</h2>
+      <p class="section-intro">Everything is fixed-fee and scoped in writing. You will never open an invoice from us and be surprised by it.</p>
+      <div class="service-grid">
+        <article class="service">
+          <p class="tag">01 · Tax</p>
+          <h3>Tax preparation</h3>
+          <p>S-corp, partnership, and individual returns, filed early enough that the numbers still help you plan.</p>
+          <ul>
+            <li>Entity and owner returns prepared together</li>
+            <li>Quarterly estimates calculated and scheduled</li>
+            <li>Notice and audit correspondence handled</li>
+          </ul>
+        </article>
+        <article class="service">
+          <p class="tag">02 · Books</p>
+          <h3>Bookkeeping</h3>
+          <p>Monthly close by the 10th: categorized, reconciled, and reviewed by a person who knows your business.</p>
+          <ul>
+            <li>Accrual or cash basis, your call</li>
+            <li>Receipt capture included</li>
+            <li>Owner report in plain English monthly</li>
+          </ul>
+        </article>
+        <article class="service">
+          <p class="tag">03 · Payroll</p>
+          <h3>Payroll</h3>
+          <p>On time, every time, with the filings that follow it done in every state you hire.</p>
+          <ul>
+            <li>Multi-state registration and filings</li>
+            <li>Contractor 1099s every January</li>
+            <li>Benefits and retirement deductions synced</li>
+          </ul>
+        </article>
+        <article class="service">
+          <p class="tag">04 · Advisory</p>
+          <h3>Fractional CFO</h3>
+          <p>A senior finance mind in your corner for pricing, cash, hiring math, and the big purchase decisions.</p>
+          <ul>
+            <li>13-week cash forecast, kept current</li>
+            <li>Margin and job costing reviews</li>
+            <li>Lender-ready statements when you need them</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band engage">
+    <div class="wrap cols">
+      <div>
+        <p class="kicker">How engagement works</p>
+        <h2 class="section-title">From first hello to handled, in three steps</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="n">01</span>
+            <div>
+              <h3>Intake</h3>
+              <p>Five questions, about two minutes, in the intake assistant below. Structure, services, and size.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="n">02</span>
+            <div>
+              <h3>Proposal</h3>
+              <p>A fixed-fee engagement proposal within two business days. No hourly meters, no open-ended scopes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="n">03</span>
+            <div>
+              <h3>Handoff</h3>
+              <p>One call to collect access and history. We take the books from there, and your old backlog with them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&q=80&auto=format&fit=crop" alt="Person taking notes with a pen beside a coffee cup in soft window light" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="band industries" id="industries">
+    <div class="wrap">
+      <p class="kicker">Industries</p>
+      <h2 class="section-title">Businesses we know cold</h2>
+      <p class="section-intro">Every industry books revenue differently. We staff advisors by industry so the questions you get asked are the right ones.</p>
+      <div class="grid">
+        <div class="industry"><h3>Trades and contractors</h3><p>Job costing, retainage, equipment depreciation</p></div>
+        <div class="industry"><h3>Restaurants and cafes</h3><p>Tip reporting, vendor reconciliation, thin margins</p></div>
+        <div class="industry"><h3>Clinics and practices</h3><p>Provider comp models, equipment financing</p></div>
+        <div class="industry"><h3>Agencies and studios</h3><p>Retainer revenue, contractor pools, WIP</p></div>
+        <div class="industry"><h3>E-commerce</h3><p>Sales tax nexus, inventory, marketplace fees</p></div>
+        <div class="industry"><h3>Nonprofits</h3><p>Fund accounting, 990s, grant reporting</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band resources" id="resources">
+    <div class="wrap">
+      <p class="kicker">Resources</p>
+      <h2 class="section-title">Tools we share with every engagement</h2>
+      <div class="resource-grid">
+        <article class="resource">
+          <span class="tag">For clients</span>
+          <h3>2026 filing calendar</h3>
+          <p>Every federal and state deadline that applies to you, mapped to what we need and when we need it.</p>
+        </article>
+        <article class="resource">
+          <span class="tag">For clients</span>
+          <h3>S-corp owner pay worksheet</h3>
+          <p>A defensible way to set reasonable compensation, updated for the current year's guidance.</p>
+        </article>
+        <article class="resource">
+          <span class="tag">For clients</span>
+          <h3>Mileage and home-office log</h3>
+          <p>The two deductions owners leave on the table most, with the records that survive review.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker">Get started</p>
+        <h2 class="section-title">Tell us about your business</h2>
+        <p class="section-intro">We retired the intake PDF. Answer a few questions here and we will match you with the right advisor and send a fixed-fee proposal within two business days.</p>
+      </div>
+      <div class="magnet-slot">
+        <div data-m5m-inline></div>
+      </div>
+      <div class="reassure">
+        <span><span class="mark" aria-hidden="true">✓</span>Answers go straight to a senior advisor</span>
+        <span><span class="mark" aria-hidden="true">✓</span>No obligation, no follow-up barrage</span>
+        <span><span class="mark" aria-hidden="true">✓</span>Proposal in two business days</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="fname">MERIDIAN</p>
+        <p class="fstrap">TAX &amp; ADVISORY</p>
+        <p>Books, taxes, payroll, and advisory for owner-operated businesses. Fixed fees, early filings, and numbers you can run the company on.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>820 Federal Row, Suite 500</li>
+          <li>Columbus, OH 43215</li>
+          <li>(614) 555-0188</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li>Monday to Friday</li>
+          <li>8:30 AM to 5:30 PM Eastern</li>
+          <li>Extended hours in filing season</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#contact">Start intake</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Meridian Tax &amp; Advisory. All rights reserved.</span>
+      <span>CPAs and enrolled agents on staff.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=f7131cfe-542a-42ae-bd0b-1e5077395ed2" async></script>
+</body>
+</html>

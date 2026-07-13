@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Warner &amp; Reed | Business Counsel for Builders</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%231E3A5F'/%3E%3Ctext x='24' y='33' font-family='Georgia,serif' font-size='26' fill='%23FAF7F2' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E3A5F;
+    --navy-deep: #16293F;
+    --parchment: #FAF7F2;
+    --parchment-dim: #F2EDE4;
+    --ink: #1F2937;
+    --ink-soft: #4B5563;
+    --brass: #A16207;
+    --brass-dark: #854D0E;
+    --line: #E3DCCF;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--parchment);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: var(--brass-dark); }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+
+  /* Top bar */
+  .topbar {
+    background: var(--navy-deep);
+    color: #CBD5E1;
+    font-size: 13.5px;
+    letter-spacing: 0.04em;
+  }
+  .topbar .wrap {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding-top: 9px; padding-bottom: 9px;
+  }
+  .topbar span strong { color: #FAF7F2; font-weight: 600; }
+
+  /* Header */
+  header.site {
+    background: var(--parchment);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 26px; padding-bottom: 26px; gap: 24px;
+  }
+  .wordmark { text-decoration: none; color: var(--navy); }
+  .wordmark .mark {
+    font-family: var(--serif); font-weight: 600; font-size: 26px;
+    letter-spacing: 0.18em; display: block; line-height: 1.1;
+  }
+  .wordmark .strap {
+    display: block; font-size: 11px; letter-spacing: 0.42em;
+    color: var(--brass); text-transform: uppercase; margin-top: 5px; font-weight: 600;
+  }
+  nav.primary { display: flex; gap: 34px; }
+  nav.primary a {
+    text-decoration: none; color: var(--ink); font-size: 14px;
+    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+    padding-bottom: 4px; border-bottom: 2px solid transparent;
+  }
+  nav.primary a:hover { border-bottom-color: var(--brass); color: var(--navy); }
+
+  /* Hero */
+  .hero { position: relative; isolation: isolate; color: #FAF7F2; }
+  .hero .bg {
+    position: absolute; inset: 0; z-index: -2;
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(22,41,63,0.82) 0%, rgba(30,58,95,0.78) 55%, rgba(22,41,63,0.92) 100%);
+  }
+  .hero .wrap {
+    min-height: 78vh; display: flex; flex-direction: column;
+    justify-content: center; padding-top: 96px; padding-bottom: 110px;
+    max-width: 900px; text-align: center; align-items: center;
+  }
+  .eyebrow {
+    font-size: 13px; letter-spacing: 0.34em; text-transform: uppercase;
+    color: #D9B45B; font-weight: 600;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(38px, 5.2vw, 62px); line-height: 1.12;
+    margin: 22px 0 24px;
+  }
+  .hero p.lede {
+    font-size: 19px; max-width: 640px; color: #E2E8F0; line-height: 1.7;
+  }
+  .hero .rule {
+    width: 64px; height: 2px; background: var(--brass); margin: 30px auto 0;
+  }
+  .hero .ctas { display: flex; gap: 18px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 15px 32px; border: 1px solid transparent;
+  }
+  .btn.solid { background: var(--brass); color: #FFF8EC; }
+  .btn.solid:hover { background: var(--brass-dark); }
+  .btn.ghost { border-color: rgba(250,247,242,0.55); color: #FAF7F2; }
+  .btn.ghost:hover { border-color: #FAF7F2; background: rgba(250,247,242,0.08); }
+
+  /* Statement */
+  .statement { padding: 96px 0 88px; text-align: center; }
+  .statement blockquote {
+    font-family: var(--serif); font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.45; color: var(--navy); max-width: 880px; margin: 0 auto;
+    font-weight: 500;
+  }
+  .statement .attribution {
+    margin-top: 26px; font-size: 13px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--brass); font-weight: 600;
+  }
+
+  /* Section scaffolding */
+  section.band { padding: 88px 0; }
+  .kicker {
+    font-size: 12.5px; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--brass); font-weight: 600; margin-bottom: 14px;
+  }
+  h2.section-title {
+    font-family: var(--serif); font-weight: 600; color: var(--navy);
+    font-size: clamp(30px, 3.6vw, 42px); line-height: 1.15; margin-bottom: 18px;
+  }
+  .section-intro { max-width: 640px; color: var(--ink-soft); font-size: 17.5px; }
+
+  /* Practice areas */
+  .practice { background: var(--parchment); border-top: 1px solid var(--line); }
+  .practice-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--line); border: 1px solid var(--line);
+    margin-top: 52px;
+  }
+  .practice-card { background: var(--parchment); padding: 42px 40px 46px; }
+  .practice-card .numeral {
+    font-family: var(--serif); font-size: 15px; color: var(--brass);
+    letter-spacing: 0.24em; font-weight: 600;
+  }
+  .practice-card h3 {
+    font-family: var(--serif); font-size: 25px; color: var(--navy);
+    margin: 12px 0 12px; font-weight: 600;
+  }
+  .practice-card p { color: var(--ink-soft); font-size: 16.5px; }
+  .practice-card ul { list-style: none; margin-top: 18px; }
+  .practice-card li {
+    padding: 9px 0 9px 26px; position: relative;
+    border-top: 1px solid var(--parchment-dim); font-size: 15.5px; color: var(--ink);
+  }
+  .practice-card li::before {
+    content: ""; position: absolute; left: 2px; top: 18px;
+    width: 12px; height: 1.5px; background: var(--brass);
+  }
+
+  /* Firm band */
+  .firm { background: var(--parchment-dim); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .firm .cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .firm figure { aspect-ratio: 4 / 3; overflow: hidden; }
+  .firm figure img { width: 100%; height: 100%; object-fit: cover; }
+  .firm .copy p { color: var(--ink-soft); margin-bottom: 18px; font-size: 17px; }
+  .firm .copy p strong { color: var(--ink); }
+  .firm-points { list-style: none; margin-top: 8px; }
+  .firm-points li {
+    padding: 12px 0 12px 30px; position: relative; border-top: 1px solid var(--line);
+    font-size: 16px;
+  }
+  .firm-points li::before {
+    content: ""; position: absolute; left: 0; top: 22px;
+    width: 16px; height: 1.5px; background: var(--brass);
+  }
+
+  /* Attorneys */
+  .attorneys-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 52px;
+  }
+  .attorney {
+    background: #FFFDF9; border: 1px solid var(--line);
+    padding: 44px 34px 38px; text-align: center;
+  }
+  .avatar {
+    width: 108px; height: 108px; border-radius: 50%;
+    background: var(--navy); color: #FAF7F2;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 34px; font-weight: 600;
+    margin: 0 auto 24px; letter-spacing: 0.04em;
+    box-shadow: 0 0 0 3px var(--parchment), 0 0 0 4.5px var(--brass);
+  }
+  .attorney h3 { font-family: var(--serif); font-size: 23px; color: var(--navy); font-weight: 600; }
+  .attorney .role {
+    font-size: 12.5px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--brass); font-weight: 600; margin: 8px 0 16px;
+  }
+  .attorney p { font-size: 15.5px; color: var(--ink-soft); }
+  .attorney .bar {
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--parchment-dim);
+    font-size: 13.5px; color: var(--ink-soft); letter-spacing: 0.02em;
+  }
+
+  /* Insights */
+  .insights { background: var(--parchment); border-top: 1px solid var(--line); }
+  .insight-list { margin-top: 44px; border-top: 1px solid var(--line); }
+  .insight {
+    display: grid; grid-template-columns: 170px 1fr 130px; gap: 28px;
+    padding: 30px 6px; border-bottom: 1px solid var(--line); align-items: baseline;
+  }
+  .insight .meta {
+    font-size: 12.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--brass); font-weight: 600;
+  }
+  .insight h3 { font-family: var(--serif); font-size: 23px; color: var(--navy); font-weight: 600; line-height: 1.3; }
+  .insight .sub { display: block; font-size: 15.5px; color: var(--ink-soft); margin-top: 6px; font-family: var(--sans); font-weight: 400; }
+  .insight .read { font-size: 14px; color: var(--ink-soft); text-align: right; }
+
+  /* Credentials */
+  .credentials { background: var(--navy); color: #E2E8F0; position: relative; overflow: hidden; }
+  .credentials .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .credentials figure { aspect-ratio: 4 / 3; overflow: hidden; }
+  .credentials figure img { width: 100%; height: 100%; object-fit: cover; }
+  .credentials h2 { color: #FAF7F2; }
+  .credentials .kicker { color: #D9B45B; }
+  .cred-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; margin-top: 40px; }
+  .cred-stat .num {
+    font-family: var(--serif); font-size: 40px; color: #D9B45B; font-weight: 600; line-height: 1;
+  }
+  .cred-stat .label { font-size: 14.5px; margin-top: 8px; color: #CBD5E1; letter-spacing: 0.02em; }
+
+  /* Contact */
+  .contact { text-align: center; padding: 104px 0; }
+  .contact .rule { width: 64px; height: 2px; background: var(--brass); margin: 0 auto 30px; }
+  .contact p.big {
+    max-width: 620px; margin: 0 auto; color: var(--ink-soft); font-size: 18px;
+  }
+  .contact .phone {
+    font-family: var(--serif); font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--navy); margin: 30px 0 8px; font-weight: 600; letter-spacing: 0.03em;
+  }
+  .contact .hours { font-size: 14.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .contact .assistant-note {
+    margin: 34px auto 0; max-width: 480px; font-size: 15.5px; color: var(--ink-soft);
+    border: 1px solid var(--line); padding: 18px 26px; background: #FFFDF9;
+  }
+
+  /* Footer */
+  footer.site {
+    background: var(--navy-deep); color: #94A3B8; font-size: 14.5px;
+  }
+  footer.site .cols {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+    padding: 64px 0 48px;
+  }
+  footer.site .mark {
+    font-family: var(--serif); color: #FAF7F2; font-size: 21px;
+    letter-spacing: 0.18em; font-weight: 600;
+  }
+  footer.site .strap {
+    font-size: 10.5px; letter-spacing: 0.42em; color: #D9B45B;
+    text-transform: uppercase; margin-top: 5px; font-weight: 600;
+  }
+  footer.site p { margin-top: 16px; max-width: 340px; line-height: 1.7; }
+  footer.site h4 {
+    color: #E2E8F0; font-size: 12.5px; letter-spacing: 0.26em;
+    text-transform: uppercase; margin-bottom: 16px; font-weight: 600;
+  }
+  footer.site ul { list-style: none; }
+  footer.site li { padding: 5px 0; }
+  footer.site a { color: #CBD5E1; text-decoration: none; }
+  footer.site a:hover { color: #FAF7F2; }
+  .footer-bottom {
+    border-top: 1px solid rgba(148,163,184,0.25);
+    padding: 22px 0 26px; font-size: 13px; color: #7C8DA3;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .practice-grid { grid-template-columns: 1fr 1fr; }
+    .attorneys-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .attorney { padding: 36px 22px 32px; }
+    .firm .cols, .credentials .cols { gap: 40px; }
+  }
+  @media (max-width: 860px) {
+    .attorneys-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .firm .cols, .credentials .cols { grid-template-columns: 1fr; }
+    .insight { grid-template-columns: 1fr; gap: 8px; }
+    .insight .read { text-align: left; }
+    footer.site .cols { grid-template-columns: 1fr; gap: 34px; }
+  }
+  @media (max-width: 768px) {
+    .practice-grid { grid-template-columns: 1fr; }
+    nav.primary { display: none; }
+    header.site .wrap { justify-content: center; }
+    .topbar .wrap { justify-content: center; flex-wrap: wrap; row-gap: 2px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    .hero .wrap { min-height: 70vh; padding-top: 72px; padding-bottom: 84px; }
+    section.band { padding: 64px 0; }
+    .statement { padding: 72px 0 64px; }
+    .practice-card { padding: 32px 26px 36px; }
+    .cred-stats { grid-template-columns: 1fr; gap: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>One Lantern Court, Suite 900, San Francisco</span>
+    <span>Office: <strong>(415) 555-0163</strong></span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="Warner and Reed, attorneys">
+      <span class="mark">WARNER &amp; REED</span>
+      <span class="strap">Attorneys at Law</span>
+    </a>
+    <nav class="primary" aria-label="Primary">
+      <a href="#practice">Practice</a>
+      <a href="#attorneys">Attorneys</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <img class="bg" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80&auto=format&fit=crop" alt="Glass office towers rising against an overcast sky, seen from street level" fetchpriority="high">
+    <div class="wrap">
+      <p class="eyebrow">Business counsel since 2009</p>
+      <h1>Counsel for companies that are building something</h1>
+      <p class="lede">From formation to exit, we advise founders and owner-operators on the decisions that shape a company. Clear advice, partner attention, and fees you can see coming.</p>
+      <div class="rule" aria-hidden="true"></div>
+      <div class="ctas">
+        <a class="btn solid" href="#practice">Our practice</a>
+        <a class="btn ghost" href="#contact">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="wrap">
+      <blockquote>Most legal problems are business problems first. We staff every matter with a partner, write in plain English, and tell you when a fight is not worth having.</blockquote>
+      <p class="attribution">Warner &amp; Reed LLP, San Francisco</p>
+    </div>
+  </section>
+
+  <section class="band practice" id="practice">
+    <div class="wrap">
+      <p class="kicker">Practice areas</p>
+      <h2 class="section-title">Four disciplines, practiced deeply</h2>
+      <p class="section-intro">We do a small number of things at a high standard. If your matter sits outside these areas, we will say so on the first call and point you somewhere good.</p>
+      <div class="practice-grid">
+        <article class="practice-card">
+          <p class="numeral">I</p>
+          <h3>Business formation</h3>
+          <p>Entity choice, founder agreements, and equity set up properly the first time, so the paperwork never becomes the story.</p>
+          <ul>
+            <li>Delaware and California entities</li>
+            <li>Founder, equity, and vesting agreements</li>
+            <li>Conversions and reorganizations</li>
+          </ul>
+        </article>
+        <article class="practice-card">
+          <p class="numeral">II</p>
+          <h3>Contracts</h3>
+          <p>Drafting and negotiating the agreements your revenue depends on, with terms you can actually operate under.</p>
+          <ul>
+            <li>Customer and vendor agreements</li>
+            <li>Licensing and IP assignments</li>
+            <li>Terms of service and policy reviews</li>
+          </ul>
+        </article>
+        <article class="practice-card">
+          <p class="numeral">III</p>
+          <h3>Disputes</h3>
+          <p>Steady hands when a deal breaks down. Most of the matters we take resolve without anyone seeing a courtroom.</p>
+          <ul>
+            <li>Partnership and shareholder disputes</li>
+            <li>Commercial litigation</li>
+            <li>Mediation and structured settlement</li>
+          </ul>
+        </article>
+        <article class="practice-card">
+          <p class="numeral">IV</p>
+          <h3>Employment</h3>
+          <p>Hires, exits, and policies handled before they become exposure, with counsel that respects both the law and the people.</p>
+          <ul>
+            <li>Offer letters and handbooks</li>
+            <li>Executive separations</li>
+            <li>Contractor classification</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band firm">
+    <div class="wrap cols">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?w=1600&q=80&auto=format&fit=crop" alt="Empty boardroom with a long wooden table and tall windows" loading="lazy">
+      </figure>
+      <div class="copy">
+        <p class="kicker">The firm</p>
+        <h2 class="section-title">A deliberately small firm</h2>
+        <p>Ten attorneys. No leverage model, no rotating cast of associates learning on your invoice. <strong>You work with the partner you hired</strong>, start to finish.</p>
+        <ul class="firm-points">
+          <li>Flat fees for defined work: formations, contract packages, policy suites</li>
+          <li>Phase budgets for disputes, agreed in writing before work begins</li>
+          <li>Responses within one business day, usually much faster</li>
+          <li>Advice framed around the business outcome, not the billable hour</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="attorneys">
+    <div class="wrap">
+      <p class="kicker">Attorneys</p>
+      <h2 class="section-title">The people on your matter</h2>
+      <p class="section-intro">Every engagement is led by one of the attorneys below. No hand-offs you did not agree to.</p>
+      <div class="attorneys-grid">
+        <article class="attorney">
+          <div class="avatar" aria-hidden="true">EW</div>
+          <h3>Eleanor Warner</h3>
+          <p class="role">Managing Partner</p>
+          <p>Formation and governance. Twenty years advising founders and family-held companies, formerly general counsel of a regional logistics firm.</p>
+          <p class="bar">Admitted in California</p>
+        </article>
+        <article class="attorney">
+          <div class="avatar" aria-hidden="true">DR</div>
+          <h3>Daniel Reed</h3>
+          <p class="role">Partner, Disputes</p>
+          <p>First chair on more than forty commercial matters. Known for settling early when it serves the client and trying the case when it does not.</p>
+          <p class="bar">Admitted in California and New York</p>
+        </article>
+        <article class="attorney">
+          <div class="avatar" aria-hidden="true">PN</div>
+          <h3>Priya Natarajan</h3>
+          <p class="role">Counsel, Employment</p>
+          <p>Advises on hiring, separations, and workplace investigations for companies from six employees to six hundred.</p>
+          <p class="bar">Admitted in California</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band insights" id="insights">
+    <div class="wrap">
+      <p class="kicker">Insights</p>
+      <h2 class="section-title">From the firm</h2>
+      <p class="section-intro">Short, practical notes we send clients before they need them. A few recent ones:</p>
+      <div class="insight-list">
+        <article class="insight">
+          <p class="meta">Contracts · June 2026</p>
+          <h3>The five clauses founders sign too fast
+            <span class="sub">Indemnity, auto-renewal, and three others that quietly shift risk onto you.</span>
+          </h3>
+          <p class="read">6 min read</p>
+        </article>
+        <article class="insight">
+          <p class="meta">Formation · May 2026</p>
+          <h3>Converting your LLC before a priced round
+            <span class="sub">What a Delaware conversion actually involves, and the six weeks to allow for it.</span>
+          </h3>
+          <p class="read">8 min read</p>
+        </article>
+        <article class="insight">
+          <p class="meta">Disputes · April 2026</p>
+          <h3>When a demand letter deserves silence
+            <span class="sub">Not every provocation needs an answer. How we decide, and what we watch for.</span>
+          </h3>
+          <p class="read">5 min read</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band credentials">
+    <div class="wrap cols">
+      <div>
+        <p class="kicker">Credentials</p>
+        <h2 class="section-title">Seventeen years of counsel</h2>
+        <div class="cred-stats">
+          <div class="cred-stat">
+            <p class="num">2009</p>
+            <p class="label">Founded in San Francisco</p>
+          </div>
+          <div class="cred-stat">
+            <p class="num">300+</p>
+            <p class="label">Companies formed and counseled</p>
+          </div>
+          <div class="cred-stat">
+            <p class="num">40+</p>
+            <p class="label">Commercial disputes first-chaired</p>
+          </div>
+          <div class="cred-stat">
+            <p class="num">3</p>
+            <p class="label">Bar admissions: California, New York, Delaware</p>
+          </div>
+        </div>
+      </div>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1600&q=80&auto=format&fit=crop" alt="Rows of leather-bound volumes and marble busts in an old library" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="rule" aria-hidden="true"></div>
+      <h2 class="section-title">Start with a conversation</h2>
+      <p class="big">Tell us what you are facing. Our intake team will route you to the right attorney, usually the same business day.</p>
+      <p class="phone">(415) 555-0163</p>
+      <p class="hours">Monday through Friday · 9:00 AM to 5:30 PM Pacific</p>
+      <p class="assistant-note">Prefer to write it down? Use the assistant in the corner of this page and describe your matter in a sentence or two. It reaches the same intake team.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="mark">WARNER &amp; REED</p>
+        <p class="strap">Attorneys at Law</p>
+        <p>Business counsel for founders, families, and owner-operators. Formation, contracts, disputes, and employment, practiced with partner attention.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>One Lantern Court, Suite 900</li>
+          <li>San Francisco, CA 94111</li>
+          <li>(415) 555-0163</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#practice">Practice areas</a></li>
+          <li><a href="#attorneys">Attorneys</a></li>
+          <li><a href="#insights">Insights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Warner &amp; Reed LLP. All rights reserved.</span>
+      <span>Attorney advertising. Prior results do not guarantee a similar outcome.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=52d70970-1e90-4390-bb90-369b1a818ac3" async></script>
+</body>
+</html>

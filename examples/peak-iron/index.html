@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Peak Iron | Structural Steel Fabrication</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23D97706'/%3E%3Cpath d='M14 46 L32 16 L50 46 Z' fill='none' stroke='%231F2937' stroke-width='6'/%3E%3Crect x='12' y='44' width='40' height='6' fill='%231F2937'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --graphite:#1F2937;
+  --graphite-deep:#111827;
+  --ember:#D97706;
+  --ember-hot:#F59E0B;
+  --paper:#FAFAF9;
+  --steel:#6B7280;
+  --line:#374151;
+  --text-on-dark:#E5E7EB;
+  --muted-on-dark:#9CA3AF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--graphite);background:var(--paper);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.1;letter-spacing:.02em}
+img{max-width:100%;display:block}
+section{scroll-margin-top:76px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.kicker{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.22em;font-size:13px;color:var(--ember);font-weight:600;display:block;margin-bottom:12px}
+.hazard{height:8px;background:repeating-linear-gradient(135deg,var(--ember) 0 16px,var(--graphite-deep) 16px 32px)}
+
+/* header */
+header{background:var(--graphite-deep);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo-word{font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;letter-spacing:.08em;color:#fff;text-transform:uppercase}
+.logo-word span{color:var(--ember-hot)}
+.nav-links{display:flex;gap:28px;align-items:center;list-style:none}
+.nav-links a{color:var(--text-on-dark);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;font-family:'Oswald',sans-serif}
+.nav-links a:hover{color:var(--ember-hot)}
+.nav-cta{background:var(--ember);color:var(--graphite-deep)!important;padding:9px 18px;font-weight:600}
+.nav-cta:hover{background:var(--ember-hot);color:var(--graphite-deep)!important}
+
+/* hero */
+.hero{position:relative;background:var(--graphite-deep);color:#fff;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.94) 0%,rgba(17,24,39,.72) 55%,rgba(17,24,39,.35) 100%)}
+.hero-inner{position:relative;padding-top:110px;padding-bottom:120px;max-width:720px}
+.hero h1{font-size:clamp(38px,5.2vw,64px);font-weight:700;color:#fff}
+.hero h1 em{font-style:normal;color:var(--ember-hot)}
+.hero p{margin-top:20px;font-size:18px;color:var(--text-on-dark);max-width:560px}
+.hero-ctas{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:15px;text-decoration:none;padding:14px 28px}
+.btn-ember{background:var(--ember);color:var(--graphite-deep)}
+.btn-ember:hover{background:var(--ember-hot)}
+.btn-ghost{border:2px solid var(--steel);color:#fff}
+.btn-ghost:hover{border-color:var(--ember-hot);color:var(--ember-hot)}
+
+/* stats */
+.stats{background:var(--graphite);color:#fff;border-top:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{padding:34px 26px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat b{display:block;font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--ember-hot);line-height:1}
+.stat span{display:block;margin-top:8px;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-on-dark)}
+
+/* capabilities */
+.caps{padding:90px 0}
+.caps h2{font-size:clamp(28px,3.4vw,42px);margin-bottom:10px}
+.caps-sub{color:var(--steel);max-width:640px;margin-bottom:44px}
+.caps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.cap{background:#fff;border:1px solid #E7E5E4;border-top:4px solid var(--ember);padding:30px 30px 26px}
+.cap h3{font-size:22px;font-weight:600;margin-bottom:12px}
+.cap p{color:#44403C;font-size:15px;margin-bottom:16px}
+.cap ul{list-style:none}
+.cap li{font-size:14px;color:#57534E;padding:7px 0 7px 22px;border-top:1px dashed #E7E5E4;position:relative}
+.cap li::before{content:"";position:absolute;left:2px;top:14px;width:10px;height:3px;background:var(--ember)}
+
+/* certifications */
+.certs{background:var(--graphite-deep);color:#fff;padding:56px 0}
+.certs-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.certs h2{font-size:20px;font-weight:600;letter-spacing:.1em;color:var(--muted-on-dark);margin-right:8px}
+.chip{border:1px solid var(--line);color:var(--text-on-dark);padding:10px 18px;font-size:13px;letter-spacing:.04em;font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:nowrap}
+.chip b{color:var(--ember-hot);font-weight:600}
+
+/* industries */
+.industries{padding:90px 0;background:#F5F5F4}
+.ind-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.ind-photo{aspect-ratio:4/3;overflow:hidden}
+.ind-photo img{width:100%;height:100%;object-fit:cover}
+.industries h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:14px}
+.industries>.wrap p.lede{color:#57534E;margin-bottom:26px;max-width:520px}
+.ind-list{list-style:none}
+.ind-list li{padding:16px 0;border-top:1px solid #D6D3D1;display:flex;gap:16px;align-items:baseline}
+.ind-list li:last-child{border-bottom:1px solid #D6D3D1}
+.ind-list b{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:17px;font-weight:600;min-width:220px}
+.ind-list span{color:#57534E;font-size:14px}
+
+/* projects */
+.projects{padding:90px 0}
+.projects h2{font-size:clamp(28px,3.4vw,42px);margin-bottom:10px}
+.projects-sub{color:var(--steel);margin-bottom:44px;max-width:640px}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.proj{background:var(--graphite-deep);color:#fff;display:flex;flex-direction:column}
+.proj-photo{aspect-ratio:4/3;overflow:hidden}
+.proj-photo img{width:100%;height:100%;object-fit:cover}
+.proj-body{padding:22px 22px 24px;border-top:3px solid var(--ember)}
+.proj h3{font-size:19px;font-weight:600;margin-bottom:6px}
+.proj-meta{font-family:'Oswald',sans-serif;color:var(--ember-hot);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.proj p{font-size:14px;color:var(--muted-on-dark)}
+
+/* contact */
+.contact{background:var(--graphite);color:#fff;padding:90px 0}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px}
+.contact h2{font-size:clamp(28px,3.6vw,44px);color:#fff;margin-bottom:16px}
+.contact p{color:var(--text-on-dark);max-width:540px;margin-bottom:14px}
+.contact .btn{margin-top:14px}
+.contact-card{border:1px solid var(--line);padding:30px;align-self:start}
+.contact-card h3{font-size:16px;letter-spacing:.14em;color:var(--ember-hot);margin-bottom:16px}
+.contact-card dl{font-size:15px;color:var(--text-on-dark)}
+.contact-card dt{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:.12em;color:var(--muted-on-dark);margin-top:14px}
+.contact-card dd{margin:2px 0 0}
+
+/* footer */
+footer{background:var(--graphite-deep);color:var(--muted-on-dark);padding:34px 0;border-top:1px solid var(--line);font-size:13px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+@media (max-width:1024px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none;border-top:1px solid var(--line)}
+  .stat:nth-child(-n+2){border-top:none}
+  .ind-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
+}
+@media (max-width:768px){
+  .nav-links li:not(:last-child){display:none}
+  .caps-grid,.proj-grid{grid-template-columns:1fr}
+  .hero-inner{padding-top:80px;padding-bottom:90px}
+  .ind-list b{min-width:150px;font-size:15px}
+}
+@media (max-width:480px){
+  .stats-grid{grid-template-columns:1fr}
+  .stat{border-top:1px solid var(--line)}
+  .stat:first-child{border-top:none}
+  .ind-list li{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Peak Iron home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 46 L32 16 L50 46 Z" fill="none" stroke="#D97706" stroke-width="6"/><rect x="10" y="44" width="44" height="6" fill="#FAFAF9"/></svg>
+      <span class="logo-word">Peak<span>&nbsp;Iron</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a class="nav-cta" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80&auto=format&fit=crop" alt="Welder joining structural steel with a shower of sparks in the Peak Iron fabrication shop" fetchpriority="high">
+  <div class="hero-grad"></div>
+  <div class="wrap hero-inner">
+    <span class="kicker">Structural Steel Fabrication</span>
+    <h1>Fabricated to spec.<br>Delivered <em>on schedule.</em></h1>
+    <p>Peak Iron runs 240,000 square feet of fabrication capacity for general contractors, plant engineers, and procurement teams that cannot afford a late sequence. Send the drawings. Get a date. Hold us to it.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-ember" href="#capabilities">View capabilities</a>
+      <a class="btn btn-ghost" href="#contact">Request a quote</a>
+    </div>
+  </div>
+</section>
+
+<div class="hazard" aria-hidden="true"></div>
+
+<section class="stats" aria-label="Shop statistics">
+  <div class="wrap stats-grid">
+    <div class="stat"><b>24,000</b><span>Tons shipped last year</span></div>
+    <div class="stat"><b>98.6%</b><span>On-time ship rate, trailing 12 months</span></div>
+    <div class="stat"><b>240,000</b><span>Sq ft under crane, two plants</span></div>
+    <div class="stat"><b>42</b><span>Certified welders on shift</span></div>
+  </div>
+</section>
+
+<section class="caps" id="capabilities">
+  <div class="wrap">
+    <span class="kicker">Capabilities</span>
+    <h2>Four shops under one roof</h2>
+    <p class="caps-sub">Beam line, plate, pipe, and custom fab run as separate cells with shared detailing and QC. One PO, one point of contact, one delivery schedule.</p>
+    <div class="caps-grid">
+      <article class="cap">
+        <h3>Structural Beams</h3>
+        <p>Wide flange, HSS, channel, and angle processed on a CNC beam line and finished to your detail drawings.</p>
+        <ul>
+          <li>W6 to W44 wide flange, HSS to 20 in square</li>
+          <li>Coping, cambering, and drilling per detail</li>
+          <li>Shop primer, galvanizing coordination, or bare</li>
+          <li>Sequenced delivery matched to erection plan</li>
+        </ul>
+      </article>
+      <article class="cap">
+        <h3>Custom Fabrication</h3>
+        <p>Weldments built from your drawings or developed with our detailers, up to 60 feet and 40 tons per piece.</p>
+        <ul>
+          <li>Stairs, platforms, skids, hoppers, frames</li>
+          <li>AWS D1.1 procedures, CWI inspection in house</li>
+          <li>Fit-up and trial assembly before shipment</li>
+          <li>Carbon, stainless, and abrasion-resistant plate</li>
+        </ul>
+      </article>
+      <article class="cap">
+        <h3>Plate and Sheet</h3>
+        <p>Cutting, forming, and rolling in one cell, so formed parts move straight to weld without a second truck ride.</p>
+        <ul>
+          <li>CNC plasma to 2 in, oxy-fuel to 6 in</li>
+          <li>10 ft x 40 ft burn table, nested from your files</li>
+          <li>Press brake forming to 500 tons</li>
+          <li>Plate rolling to 1.5 in thickness</li>
+        </ul>
+      </article>
+      <article class="cap">
+        <h3>Pipe and Tube</h3>
+        <p>Rolled, mitered, and fit to spool drawings for rack, header, and structural applications.</p>
+        <ul>
+          <li>Carbon and stainless, schedule 10 to XXH</li>
+          <li>Flanged, beveled, or grooved ends</li>
+          <li>Rolled sections to 24 in diameter</li>
+          <li>Hydro test documentation on request</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="certs" aria-label="Certifications and quality">
+  <div class="wrap certs-row">
+    <h2>Quality</h2>
+    <span class="chip"><b>AISC</b> certified fabrication</span>
+    <span class="chip"><b>AWS D1.1</b> procedures on file</span>
+    <span class="chip"><b>CWI</b> inspectors on staff</span>
+    <span class="chip"><b>ISO 9001</b> quality system</span>
+    <span class="chip"><b>MTRs</b> traceable to every heat</span>
+  </div>
+</section>
+
+<section class="industries" id="industries">
+  <div class="wrap ind-grid">
+    <div class="ind-photo">
+      <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?w=1200&q=80&auto=format&fit=crop" alt="Industrial processing plant with stacks and structural pipe racks at dusk" loading="lazy" decoding="async">
+    </div>
+    <div>
+      <span class="kicker">Industries</span>
+      <h2>Built for buyers who read the spec</h2>
+      <p class="lede">Most of our tonnage ships to repeat customers. They come back because the paperwork is right, the fit-up is right, and the truck shows up when the schedule says it will.</p>
+      <ul class="ind-list">
+        <li><b>Commercial construction</b><span>Structural packages, misc metals, stairs and rails</span></li>
+        <li><b>Industrial and energy</b><span>Pipe racks, platforms, equipment supports</span></li>
+        <li><b>Transportation</b><span>Bridge components, sign structures, guardrail posts</span></li>
+        <li><b>Water and utilities</b><span>Treatment plant weldments, access structures</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="wrap">
+    <span class="kicker">Recent work</span>
+    <h2>Tonnage that shipped on time</h2>
+    <p class="projects-sub">Three jobs from the last two years. References available on request through the estimating desk.</p>
+    <div class="proj-grid">
+      <article class="proj">
+        <div class="proj-photo"><img src="https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?w=800&q=80&auto=format&fit=crop" alt="Tower cranes erecting a structural steel frame against the sky" loading="lazy" decoding="async"></div>
+        <div class="proj-body">
+          <p class="proj-meta">2,300 tons · 26 sequences</p>
+          <h3>Quarry Bend Tower</h3>
+          <p>Full structural package for a 14-story office tower. Every sequence delivered inside its two-day erection window.</p>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-photo"><img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=800&q=80&auto=format&fit=crop" alt="Steel framing of a distribution building under construction" loading="lazy" decoding="async"></div>
+        <div class="proj-body">
+          <p class="proj-meta">1,850 tons · 22 weeks</p>
+          <h3>Sawgrass Logistics Hub</h3>
+          <p>Structural steel and joist package for a 720,000 sq ft distribution center, shipped in weekly sequences.</p>
+        </div>
+      </article>
+      <article class="proj">
+        <div class="proj-photo"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80&auto=format&fit=crop" alt="Field crew reviewing work on a reinforced concrete deck at an industrial site" loading="lazy" decoding="async"></div>
+        <div class="proj-body">
+          <p class="proj-meta">640 tons · zero weld rejects</p>
+          <h3>Bowmont Plant Expansion</h3>
+          <p>Pipe rack, platforms, and stair towers for a processing plant expansion, with full MTR traceability.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="kicker">Contact</span>
+      <h2>Send us the drawings</h2>
+      <p>The fastest path to a number is the quote panel in the corner of this page. Four questions, then a live estimator picks it up and comes back with budget pricing or a request for the drawing set.</p>
+      <p>Prefer the phone? The estimating desk answers 7am to 5pm Eastern, Monday through Friday.</p>
+      <a class="btn btn-ember" href="#capabilities">Review capabilities first</a>
+    </div>
+    <div class="contact-card">
+      <h3>Estimating Desk</h3>
+      <dl>
+        <dt>Phone</dt><dd>(412) 555-0148</dd>
+        <dt>Plant 1</dt><dd>4180 Foundry Road, Beaver Falls, PA 15010</dd>
+        <dt>Plant 2</dt><dd>901 Millrace Drive, Weirton, WV 26062</dd>
+        <dt>Hours</dt><dd>Mon to Fri, 7:00am to 5:00pm ET</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<div class="hazard" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Peak Iron Fabrication LLC</span>
+    <span>4180 Foundry Road, Beaver Falls, PA 15010</span>
+    <span>(412) 555-0148</span>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=585bceaf-53b5-429a-a93c-91dea3e6415f" async></script>
+</body>
+</html>

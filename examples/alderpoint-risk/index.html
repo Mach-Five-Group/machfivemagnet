@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Alderpoint Risk Partners | Commercial Insurance Brokerage</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23065F46'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='bold' text-anchor='middle' fill='%23F5F5F4'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#065F46;
+  --forest-deep:#064E3B;
+  --stone:#F5F5F4;
+  --charcoal:#292524;
+  --copper:#B45309;
+  --body:#44403C;
+  --hairline:#E7E5E4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Public Sans',sans-serif;background:var(--stone);color:var(--charcoal);line-height:1.65;font-size:16.5px}
+h1,h2,h3{font-family:'Merriweather',serif;line-height:1.25;color:var(--charcoal)}
+img{max-width:100%;display:block}
+section{scroll-margin-top:120px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.label{font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--copper);display:block;margin-bottom:14px}
+
+/* top bar + nav */
+.topbar{background:var(--forest-deep);color:#D1FAE5;font-size:13px;padding:8px 0}
+.topbar .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header{background:#fff;border-bottom:1px solid var(--hairline);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;height:86px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand svg{width:40px;height:40px}
+.brand-stack{line-height:1.1}
+.brand-name{font-family:'Merriweather',serif;font-weight:900;font-size:21px;letter-spacing:.06em;color:var(--charcoal);display:block}
+.brand-strap{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--forest);display:block;margin-top:3px}
+.nav-links{display:flex;gap:30px;align-items:center;list-style:none}
+.nav-links a{color:var(--charcoal);text-decoration:none;font-size:14.5px;font-weight:600}
+.nav-links a:hover{color:var(--forest)}
+
+/* hero */
+.hero{background:#fff;padding:88px 0 92px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(32px,4vw,50px);font-weight:900}
+.hero-lede{margin-top:22px;font-size:18px;color:var(--body);max-width:520px}
+.hero-ctas{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:15px;padding:14px 26px;border-radius:3px}
+.btn-forest{background:var(--forest);color:#fff}
+.btn-forest:hover{background:var(--forest-deep)}
+.btn-quiet{color:var(--forest);border:1.5px solid var(--forest)}
+.btn-quiet:hover{background:#ECFDF5}
+.hero-photo{position:relative;z-index:0}
+.hero-photo .frame{aspect-ratio:4/3.4;overflow:hidden;border-radius:3px}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo::after{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--copper);border-radius:3px;z-index:-1}
+.hero-note{margin-top:34px;font-size:14px;color:var(--body);border-left:3px solid var(--copper);padding-left:14px;max-width:440px}
+
+/* proof strip */
+.proof{background:var(--stone);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:34px 0}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.proof b{font-family:'Merriweather',serif;font-size:30px;font-weight:900;color:var(--forest);display:block}
+.proof span{font-size:13px;color:var(--body);letter-spacing:.03em}
+
+/* coverage */
+.coverage{padding:92px 0;background:var(--stone)}
+.coverage h2{font-size:clamp(27px,3vw,38px);font-weight:900;max-width:560px}
+.coverage-sub{margin-top:14px;color:var(--body);max-width:600px}
+.cov-grid{margin-top:48px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.cov{background:#fff;border:1px solid var(--hairline);border-radius:4px;padding:32px 32px 28px}
+.cov h3{font-size:20px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.cov h3 svg{width:26px;height:26px;flex:none}
+.cov p{font-size:15px;color:var(--body)}
+
+/* industries */
+.industries{padding:92px 0;background:#fff}
+.industries h2{font-size:clamp(27px,3vw,38px);font-weight:900}
+.industries-sub{margin-top:14px;color:var(--body);max-width:620px}
+.ind-grid{margin-top:46px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.tile{border:1px solid var(--hairline);border-radius:4px;overflow:hidden;background:var(--stone)}
+.tile-photo{aspect-ratio:4/3;overflow:hidden}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile-body{padding:18px 20px 20px}
+.tile h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.tile p{font-size:13.5px;color:var(--body)}
+
+/* how we work */
+.how{padding:92px 0;background:var(--stone)}
+.how h2{font-size:clamp(27px,3vw,38px);font-weight:900}
+.how-sub{margin-top:14px;color:var(--body);max-width:620px}
+.steps{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.step{background:#fff;border:1px solid var(--hairline);border-radius:4px;padding:30px}
+.step-num{font-family:'Merriweather',serif;font-weight:900;font-size:44px;color:var(--copper);line-height:1}
+.step h3{font-size:19px;font-weight:700;margin:16px 0 10px}
+.step p{font-size:14.5px;color:var(--body)}
+
+/* claims */
+.claims{background:var(--forest-deep);color:#ECFDF5;padding:88px 0}
+.claims-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.claims .label{color:#FBBF24}
+.claims h2{color:#fff;font-size:clamp(26px,3vw,38px);font-weight:900}
+.claims p{margin-top:18px;color:#D1FAE5;font-size:16px;max-width:520px}
+.claims-photo{aspect-ratio:4/3;overflow:hidden;border-radius:4px}
+.claims-photo img{width:100%;height:100%;object-fit:cover}
+.claims-points{margin-top:24px;list-style:none}
+.claims-points li{padding:10px 0 10px 28px;position:relative;font-size:15px;color:#D1FAE5;border-top:1px solid rgba(236,253,245,.15)}
+.claims-points li::before{content:"";position:absolute;left:2px;top:17px;width:12px;height:12px;border-radius:50%;background:var(--copper)}
+
+/* about */
+.about{padding:88px 0;background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.about h2{font-size:clamp(26px,3vw,36px);font-weight:900}
+.about p{margin-top:16px;color:var(--body)}
+.office{border:1px solid var(--hairline);border-radius:4px;padding:30px;background:var(--stone)}
+.office h3{font-size:17px;font-weight:700;margin-bottom:14px}
+.office dl{font-size:15px;color:var(--body)}
+.office dt{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);font-weight:600;margin-top:14px}
+.office dd{margin:2px 0 0}
+
+/* footer */
+footer{background:var(--charcoal);color:#D6D3D1;padding:34px 0;font-size:13.5px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:1024px){
+  .hero-grid,.claims-grid,.about-grid{grid-template-columns:1fr;gap:44px}
+  .hero-photo::after{display:none}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .proof-grid{grid-template-columns:repeat(2,1fr);gap:30px}
+}
+@media (max-width:768px){
+  .nav-links li:not(:last-child){display:none}
+  .cov-grid,.steps{grid-template-columns:1fr}
+  .hero{padding:64px 0}
+}
+@media (max-width:480px){
+  .ind-grid{grid-template-columns:1fr}
+  .proof-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Independent commercial brokerage, licensed in 14 states</span>
+    <span>(503) 555-0121 · Mon to Fri, 8am to 5pm PT</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Alderpoint Risk Partners home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#065F46"/><path d="M32 14 C42 22 44 34 32 50 C20 34 22 22 32 14 Z" fill="#F5F5F4"/><path d="M32 20 L32 46" stroke="#065F46" stroke-width="2.5"/></svg>
+      <span class="brand-stack">
+        <span class="brand-name">ALDERPOINT</span>
+        <span class="brand-strap">Risk Partners</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#coverage">Coverage</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#claims">Claims</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="label">Commercial coverage, brokered right</span>
+      <h1>Coverage that fits the business you actually run</h1>
+      <p class="hero-lede">Alderpoint is an independent brokerage. We read the policies you already have, shop your risk across more than thirty carriers, and place coverage matched to your contracts, your payroll, and your lease. Nothing more, nothing missing.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-forest" href="#coverage">Explore coverage</a>
+        <a class="btn btn-quiet" href="#how">How we work</a>
+      </div>
+      <p class="hero-note">We are brokers, not agents of any one carrier. Our obligation runs to you.</p>
+    </div>
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&auto=format&fit=crop" alt="Independent retail shop interior with clothing displays and warm lighting" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof" aria-label="Firm statistics">
+  <div class="wrap proof-grid">
+    <div><b>2012</b><span>Independent since</span></div>
+    <div><b>96%</b><span>Client retention, last renewal cycle</span></div>
+    <div><b>$48M</b><span>Premium placed last year</span></div>
+    <div><b>1,100</b><span>Businesses served across the Northwest</span></div>
+  </div>
+</section>
+
+<section class="coverage" id="coverage">
+  <div class="wrap">
+    <span class="label">Coverage</span>
+    <h2>Four policies carry most of the weight</h2>
+    <p class="coverage-sub">Every placement starts with what your contracts and your landlord actually require. We write limits to match, then close the gaps that show up in the fine print.</p>
+    <div class="cov-grid">
+      <article class="cov">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>General liability</h3>
+        <p>Premises, products, and completed operations. The baseline policy every lease and contract will ask about, written at limits that match those documents rather than a carrier default.</p>
+      </article>
+      <article class="cov">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>Property</h3>
+        <p>Buildings, contents, equipment, and loss of income. We check valuation methods and co-insurance clauses before you bind, because claim time is the wrong moment to learn what "actual cash value" means.</p>
+      </article>
+      <article class="cov">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.5-3.5 2.7-5.5 5.5-5.5s5 2 5.5 5.5"/><path d="M16 4.5c1.8.6 3 2 3 4s-1.2 3.4-3 4"/></svg>Workers compensation</h3>
+        <p>Rated right the first time. We review class codes and experience mods at every renewal, because misclassification is the quietest way a business overpays for years.</p>
+      </article>
+      <article class="cov">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="13" rx="1.5"/><path d="M8 21h8"/><path d="M7 9l3 2.5L7 14"/><path d="M12.5 14h4"/></svg>Cyber</h3>
+        <p>Breach response, funds transfer fraud, and ransomware. Small firms are the softest targets, and we place cyber for five-person shops as often as five-hundred-person ones.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="industries" id="industries">
+  <div class="wrap">
+    <span class="label">Industries</span>
+    <h2>We insure businesses you can walk into</h2>
+    <p class="industries-sub">Storefronts, job sites, offices, and warehouse floors. If your risk lives in the physical world, we have probably placed it before.</p>
+    <div class="ind-grid">
+      <article class="tile">
+        <div class="tile-photo"><img src="https://images.unsplash.com/photo-1516216628859-9bccecab13ca?w=800&q=80&auto=format&fit=crop" alt="Construction crew in hard hats carrying material on a job site" loading="lazy" decoding="async"></div>
+        <div class="tile-body"><h3>Construction</h3><p>GL, builders risk, bonds, and comp for trades and general contractors.</p></div>
+      </article>
+      <article class="tile">
+        <div class="tile-photo"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80&auto=format&fit=crop" alt="Restaurant dining room with wooden tables before opening" loading="lazy" decoding="async"></div>
+        <div class="tile-body"><h3>Hospitality</h3><p>Liquor liability, property, and comp for restaurants and lodging.</p></div>
+      </article>
+      <article class="tile">
+        <div class="tile-photo"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80&auto=format&fit=crop" alt="Professional services team working together at an office table" loading="lazy" decoding="async"></div>
+        <div class="tile-body"><h3>Professional services</h3><p>E&amp;O, cyber, and office packages for firms that sell judgment.</p></div>
+      </article>
+      <article class="tile">
+        <div class="tile-photo"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80&auto=format&fit=crop" alt="Warehouse aisle with tall pallet racking and stored inventory" loading="lazy" decoding="async"></div>
+        <div class="tile-body"><h3>Manufacturing and warehousing</h3><p>Property, product liability, equipment breakdown, and cargo.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <span class="label">How we work</span>
+    <h2>Audit, market, place</h2>
+    <p class="how-sub">The process is deliberately unexciting. It takes about three weeks from first call to bound coverage, and you see every quote we receive.</p>
+    <div class="steps">
+      <article class="step">
+        <div class="step-num">1</div>
+        <h3>Audit</h3>
+        <p>We read your current policies line by line and map them against your actual exposures. You get a written gap summary whether or not you move your business to us.</p>
+      </article>
+      <article class="step">
+        <div class="step-num">2</div>
+        <h3>Market</h3>
+        <p>We take your risk to the carriers that actually want your class of business, with a submission that presents it honestly. Better submissions get better pricing. They always have.</p>
+      </article>
+      <article class="step">
+        <div class="step-num">3</div>
+        <h3>Place</h3>
+        <p>You choose from real options, side by side. After binding: certificates the same day you ask, and renewals started 90 days out, not the week before.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="claims" id="claims">
+  <div class="wrap claims-grid">
+    <div>
+      <span class="label">Claims</span>
+      <h2>When something goes wrong, call us first</h2>
+      <p>A policy is a promise, and claims are where promises get tested. Your Alderpoint broker files the claim, tracks it, and pushes back on your behalf when an adjuster reads the policy differently than we do.</p>
+      <ul class="claims-points">
+        <li>Every claim acknowledged within one business day</li>
+        <li>A named broker owns your file from first notice to close</li>
+        <li>Open claims reviewed weekly until they are resolved</li>
+      </ul>
+    </div>
+    <div class="claims-photo">
+      <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1200&q=80&auto=format&fit=crop" alt="Small business owner taking a card payment at the counter" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="label">About</span>
+      <h2>Founded by brokers who kept finding unread policies</h2>
+      <p>Alderpoint Risk Partners opened in 2012 after its two founders spent a decade watching businesses buy policies nobody had read, including the people selling them. The fix was not complicated: read the documents, present the risk honestly, and stay in the room at claim time.</p>
+      <p>Today a team of 18 brokers and account managers serves about 1,100 businesses across the Northwest. Most new clients arrive the same way you probably did: a referral from someone who had a claim that went well.</p>
+    </div>
+    <div class="office">
+      <h3>The office</h3>
+      <dl>
+        <dt>Address</dt><dd>210 SW Alder Street, Suite 400, Portland, OR 97204</dd>
+        <dt>Phone</dt><dd>(503) 555-0121</dd>
+        <dt>Hours</dt><dd>Mon to Fri, 8:00am to 5:00pm PT</dd>
+        <dt>Licensing</dt><dd>Licensed in 14 states, headquartered in Oregon</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Alderpoint Risk Partners</span>
+    <span>210 SW Alder Street, Suite 400, Portland, OR 97204</span>
+    <span>(503) 555-0121</span>
+  </div>
+</footer>
+
+<script src="https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=a37bc946-c2c7-4186-8505-5eec6a818daf" async></script>
+</body>
+</html>
