@@ -7,7 +7,9 @@
   }
 
   function sync() {
-    el.setAttribute("aria-checked", getTheme() === "dark" ? "true" : "false");
+    var dark = getTheme() === "dark";
+    el.setAttribute("aria-checked", dark ? "true" : "false");
+    el.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
   }
 
   sync();
