@@ -53,12 +53,17 @@
   }
 
   function spinTo(next) {
+    var zoom = phone.parentElement; // .m5-phone-zoom: recedes mid-spin so the flip doesn't lift the silhouette
     phone.classList.add("is-spin");
+    zoom.classList.add("is-spin");
     window.setTimeout(function () {
       index = next;
       applyActive();
     }, Math.round(SPIN_MS / 2)); // screen faces away at the midpoint
-    window.setTimeout(function () { phone.classList.remove("is-spin"); }, SPIN_MS + 50);
+    window.setTimeout(function () {
+      phone.classList.remove("is-spin");
+      zoom.classList.remove("is-spin");
+    }, SPIN_MS + 50);
   }
 
   function tick() { spinTo((index + 1) % videos.length); }
