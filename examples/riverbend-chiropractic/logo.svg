@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <rect width="96" height="96" rx="24" fill="#1F5FA8"/>
+  <!-- river bend -->
+  <path d="M14 70 C30 60 34 44 30 30" fill="none" stroke="#8FC1EF" stroke-width="7" stroke-linecap="round"/>
+  <!-- spine curve -->
+  <path d="M56 18 C48 34 66 44 56 58 C50 66 52 74 58 80" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="56" cy="18" r="6" fill="#FFFFFF"/>
+</svg>
