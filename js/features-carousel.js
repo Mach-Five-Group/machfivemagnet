@@ -16,7 +16,13 @@
   var timer = null;
   var paused = false;
   var scrollTicking = false;
-  var INTERVAL = 6000;
+  // Autoplay pace comes from the CSS token so the thumbnail progress bar
+  // (animated in CSS off the same variable) can never drift from the timer.
+  var INTERVAL = (parseFloat(getComputedStyle(root).getPropertyValue('--feat-interval')) || 6) * 1000;
+
+  function syncAutoplayState() {
+    root.setAttribute('data-autoplay', paused ? 'false' : 'true');
+  }
 
   function scrollToIndex(index) {
     if (index < 0) index = total - 1;
@@ -120,12 +126,14 @@
     clearInterval(timer);
     timer = null;
     updatePlayPauseIcon();
+    syncAutoplayState();
   }
 
   function play() {
     paused = false;
     startTimer();
     updatePlayPauseIcon();
+    syncAutoplayState();
   }
 
   if (playPauseBtn) {
@@ -161,4 +169,5 @@
   updateActive(0);
   startTimer();
   updatePlayPauseIcon();
+  syncAutoplayState();
 })();

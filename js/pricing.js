@@ -18,11 +18,21 @@
       btn.classList.toggle("hover:text-text", !isActive);
     });
 
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     priceEls.forEach(function (el) {
       var monthly = el.dataset.monthly;
       var annual = el.dataset.annual;
       var val = mode === "annual" ? annual : monthly;
-      if (val) el.textContent = "$" + val;
+      if (!val) return;
+      if (reduced || el.textContent === "$" + val) {
+        el.textContent = "$" + val;
+        return;
+      }
+      el.style.opacity = "0";
+      setTimeout(function () {
+        el.textContent = "$" + val;
+        el.style.opacity = "1";
+      }, 150);
     });
 
     annualSubtexts.forEach(function (el) {
