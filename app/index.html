@@ -1,61 +1,93 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Mach Five Magnet</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport"  content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">  <title>Mach Five Magnet</title>
 
-        <link rel="stylesheet" href="https://arcanus55.github.io/neodigm55/dist/neodigm55__v5_0.css">
-        <script>
-let neodigmOptCustom = { mvvLegit:true, MVV_SPLASH_2_SIGNIN:false, N55_DEBUG_LOG:false, EVENT_SOUNDS:false, CONSOLE_LOG_VER:false, W4S_VOLUME: .018, N55_CARO_BLUR_OUT: true }
-        </script>
-        <!-- ##turnaround## -->
-        <script src="https://arcanus55.github.io/neodigm55/dist/neodigm55__v5_0.js"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
+  <!-- Google Fonts: brand (Google Sans Flex + Inter) + Neodigm (Roboto + Material Symbols) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Google+Sans+Flex:wght@400;500;600;700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;300;400&family=Roboto+Slab:wght@300;400;500;600;700&family=Roboto+Mono:wght@300&family=Material+Symbols+Outlined&display=block">
+  <link rel="stylesheet" type="text/css" requestor="Neodigm 55" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;300;400&family=Roboto+Slab:wght@300;400;500;600;700&family=Roboto+Mono:wght@300&family=Material+Symbols+Outlined&display=block" crossorigin="anonymous">
 
-    <!-- App shell layout — MIRRORS apps/client-saas/index.html (keep in sync). main.js only
-         looks these elements up, so they must exist in the served HTML. The authenticated
-         app is light; #app-shell escapes launCh's dark base so pages render on a light surface. -->
-    <style>
-      #app-shell {
-        min-height: 100vh;
-        background: var(--color-surface, #F4F7FB);
-        color: var(--color-text, #0B1220);
-        color-scheme: light;
-      }
-      #app-shell .page-shell { padding: 40px 48px; }
-      #app-shell.has-side-nav #app-content {
-        margin-left: var(--sidenav-width, 260px);
-        transition: margin-left 0.2s ease;
-      }
-      #app-shell.has-side-nav.nav-collapsed #app-content {
-        margin-left: var(--sidenav-width-collapsed, 68px);
-      }
-      @media (max-width: 768px) {
-        #app-shell.has-side-nav #app-content { margin-left: 0; }
-        #app-shell .page-shell { padding: 24px 20px; }
-        #app-shell.has-side-nav.has-sub-nav #m5t-sub-nav { padding-left: 56px; }
-        #m5t-sub-nav { z-index: 80; }
-      }
-    </style>
+  <!-- Neodigm 55 UX Library -->
+  <link rel="stylesheet" href="https://arcanus55.github.io/neodigm55/dist/neodigm55__v5_0.css">
 
-    <script type="module" crossorigin src="assets/index_11c2b8d5.js"></script>
-    <link rel="stylesheet" crossorigin href="assets/index_11c2b8d5.css">
-  </head>
-  <body>
-    <div id="app-shell">
-      <!-- Persona-aware left navigation (web component, outside #app so route renders
-           never destroy it). Hidden until an authenticated route shows it. -->
-      <m5t-side-nav id="m5t-side-nav" hidden></m5t-side-nav>
-      <div id="app-content">
-        <!-- Contextual top sub-nav: shown only when the active section has sub-items. -->
-        <m5t-primary-nav id="m5t-sub-nav" data-show-secondary="false" data-hide-logo="true" hidden></m5t-primary-nav>
-        <div id="app" data-sync-env="DEV" data-sync-theme="dark" data-sync-motif="brand" data-sync-lang="en"></div>
-      </div>
+  <!-- App shell layout: left side-nav (fixed, inside m5t-side-nav shadow DOM) + a content
+       column (contextual top sub-nav + #app). The column only reserves room for the
+       sidebar when the nav is shown (authenticated routes). -->
+  <style>
+    /* The authenticated app is light. launCh's global base is dark
+       (body { background: var(--color-gray-500); color-scheme: dark }) — auth pages
+       escape it via .auth-container; the app shell does the same here so section
+       pages render on a light surface instead of the gray body bleeding through. */
+    #app-shell {
+      min-height: 100vh;
+      background: var(--color-surface, #F4F7FB);
+      color: var(--color-text, #0B1220);
+      color-scheme: light;
+    }
+    /* Authoritative content gutter (high-specificity + unlayered so it can't lose to
+       the global `* { padding: 0 }` reset). Section pages wrap content in .page-shell. */
+    #app-shell .page-shell { padding: 40px 48px; }
+    #app-shell.has-side-nav #app-content {
+      margin-left: var(--sidenav-width, 260px);
+      transition: margin-left 0.2s ease;
+    }
+    #app-shell.has-side-nav.nav-collapsed #app-content {
+      margin-left: var(--sidenav-width-collapsed, 68px);
+    }
+    @media (max-width: 768px) {
+      #app-shell.has-side-nav #app-content { margin-left: 0; }
+      #app-shell .page-shell { padding: 24px 20px; }
+      /* Leave a gutter for the floating hamburger when a sub-nav is showing. */
+      #app-shell.has-side-nav.has-sub-nav #m5t-sub-nav { padding-left: 56px; }
+      /* Drop the sub-nav below the side-nav drawer (z-90) + scrim (z-88) so the open
+         drawer overlays/dims it like the rest of the content (hamburger stays on top). */
+      #m5t-sub-nav { z-index: 80; }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index_cdc5c5ee.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index_cdc5c5ee.css">
+</head>
+<body>
+  <div id="app-shell">
+    <!-- Persona-aware left navigation (web component, lives OUTSIDE #app so route
+         renders never destroy it). Hidden until an authenticated route shows it. -->
+    <m5t-side-nav id="m5t-side-nav" hidden></m5t-side-nav>
+    <div id="app-content">
+      <!-- Contextual top sub-nav: shown only when the active section has sub-items.
+           Reuses m5t-primary-nav (logo hidden; the side-nav owns the brand mark). -->
+      <m5t-primary-nav id="m5t-sub-nav" data-show-secondary="false" data-hide-logo="true" hidden></m5t-primary-nav>
+      <div id="app"></div>
     </div>
-  </body>
+  </div>
+
+  <!-- Neodigm 55 Configuration and Library -->
+  <!-- Must load BEFORE our module scripts to ensure mvvLegit is available -->
+  <script>
+    // DEBUG: Check localStorage BEFORE anything loads
+    console.log('[DEBUG] Page load - mvv before neodigm:', localStorage.getItem('mvv') ? 'EXISTS' : 'NULL');
+
+    // Neodigm 55 configuration - minimal config to match working apps
+    let neodigmOptCustom = { mvvLegit: true };
+  </script>
+  <script
+    src="https://arcanus55.github.io/neodigm55/dist/neodigm55__v5_0.js"
+    onload="window.__neodigmLoaded = true; console.log('[Neodigm] Library loaded successfully'); console.log('[DEBUG] After neodigm load - mvv:', localStorage.getItem('mvv') ? 'EXISTS' : 'NULL');"
+    onerror="console.error('[Neodigm] Failed to load library from CDN');"
+  ></script>
+
+  <script>
+    // DEBUG: Check localStorage AFTER neodigm loads but BEFORE main.js
+    console.log('[DEBUG] Before main.js - mvv:', localStorage.getItem('mvv') ? 'EXISTS' : 'NULL');
+  </script>
+
+  <!-- Application Entry Point -->
+</body>
 </html>
