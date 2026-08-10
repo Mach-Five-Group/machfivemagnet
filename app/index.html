@@ -60,7 +60,12 @@
        web component: persistent regardless of which section has sub-items (unlike
        #m5t-sub-nav, which is hidden on many routes), and independent of client-sse-
        console (which doesn't use this app-shell at all). Shown/hidden by main.js the
-       same way m5t-side-nav is (authenticated routes only). */
+       same way m5t-side-nav is (authenticated routes only). `top: 14px` here is only
+       the DEFAULT — core/notificationBell.js's alignNotifBellToBanner() overrides it
+       via inline style (ResizeObserver-driven) to stay centered against the
+       org-context-banner's own buttons whenever that banner is showing, since the
+       banner's height (and even which line its buttons land on, once it wraps) isn't
+       a fixed value this stylesheet can know in advance. */
     #m5t-notif-bell { position: fixed; top: 14px; right: 20px; z-index: 90; }
     #m5t-notif-bell-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--color-border, #D4DCE8); background: var(--color-bg, #fff); color: var(--color-text-muted, #4A5A78); cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow-sm, 0 1px 3px rgba(11,18,32,0.08)); }
     #m5t-notif-bell-btn:hover { color: var(--color-primary-600, #0072BA); border-color: var(--color-primary-600, #0072BA); }
@@ -79,8 +84,8 @@
     .m5t-notif-time { font-size: 0.7rem; color: var(--color-text-subtle, #6C7C9A); margin-top: 4px; }
     .m5t-notif-empty { padding: 24px 14px; text-align: center; font-size: 0.82rem; color: var(--color-text-subtle, #6C7C9A); }
   </style>
-  <script type="module" crossorigin src="assets/index_5f414e53.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_5f414e53.css">
+  <script type="module" crossorigin src="assets/index_567c59f1.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_567c59f1.css">
 </head>
 <body>
   <div id="app-shell">
