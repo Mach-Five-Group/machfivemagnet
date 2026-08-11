@@ -71,21 +71,62 @@
     #m5t-notif-bell-btn:hover { color: var(--color-primary-600, #0072BA); border-color: var(--color-primary-600, #0072BA); }
     #m5t-notif-badge { position: absolute; top: -4px; right: -4px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 999px; background: var(--color-danger-strong, #DC2626); color: #fff; font-size: 0.62rem; font-weight: 700; line-height: 16px; text-align: center; }
     #m5t-notif-badge[hidden] { display: none; }
-    #m5t-notif-panel { position: absolute; top: 48px; right: 0; width: min(360px, 90vw); max-height: 70vh; overflow-y: auto; background: var(--color-bg, #fff); border: 1px solid var(--color-border, #D4DCE8); border-radius: 12px; box-shadow: var(--shadow-md, 0 8px 24px rgba(11,18,32,0.16)); }
-    #m5t-notif-panel[hidden] { display: none; }
-    .m5t-notif-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--color-border, #D4DCE8); font-weight: 700; font-size: 0.86rem; }
-    .m5t-notif-markall { appearance: none; border: 0; background: transparent; color: var(--color-primary-600, #0072BA); font: inherit; font-size: 0.76rem; font-weight: 600; cursor: pointer; }
-    .m5t-notif-item { display: block; padding: 12px 14px; border-bottom: 1px solid var(--color-surface-2, #EAF0F7); text-decoration: none; color: inherit; }
+    /* Open/close is animated, so visibility (transitionable, and still removed from the
+       a11y tree and tab order) replaces the old `hidden` attribute, which is display:none
+       and cannot transition. transform-origin sits under the bell so the panel grows out
+       of the button it belongs to rather than appearing fully formed on top of it. */
+    #m5t-notif-panel { position: absolute; top: 48px; right: 0; width: min(360px, 90vw); max-height: 70vh; overflow-y: auto; background: var(--color-bg, #fff); border: 1px solid var(--color-border, #D4DCE8); border-radius: 14px; box-shadow: var(--shadow-md, 0 12px 32px rgba(11,18,32,0.14)), 0 2px 6px rgba(11,18,32,0.06); opacity: 0; visibility: hidden; transform: translateY(-6px) scale(0.97); transform-origin: top right; transition: opacity .16s ease, transform .18s cubic-bezier(.2,.8,.3,1), visibility 0s linear .18s; }
+    #m5t-notif-panel[data-open="true"] { opacity: 1; visibility: visible; transform: none; transition: opacity .16s ease, transform .18s cubic-bezier(.2,.8,.3,1), visibility 0s; }
+    /* Caret tying the panel back to the bell. */
+    #m5t-notif-panel::before { content: ""; position: absolute; top: -6px; right: 14px; width: 11px; height: 11px; background: var(--color-bg, #fff); border-left: 1px solid var(--color-border, #D4DCE8); border-top: 1px solid var(--color-border, #D4DCE8); transform: rotate(45deg); border-radius: 3px 0 0 0; }
+    html.ff-no-animations #m5t-notif-panel, html.ff-no-animations #m5t-notif-panel[data-open="true"] { transition: none; }
+    @media (prefers-reduced-motion: reduce) { #m5t-notif-panel, #m5t-notif-panel[data-open="true"] { transition: none; } }
+
+    .m5t-notif-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--color-border, #D4DCE8); font-weight: 700; font-size: 0.86rem; position: sticky; top: 0; background: var(--color-bg, #fff); z-index: 1; }
+    .m5t-notif-head__actions { display: inline-flex; align-items: center; gap: 10px; }
+    .m5t-notif-markall, .m5t-notif-clearall { appearance: none; border: 0; background: transparent; font: inherit; font-size: 0.76rem; font-weight: 600; cursor: pointer; padding: 2px; border-radius: 6px; }
+    .m5t-notif-markall { color: var(--color-primary-600, #0072BA); }
+    .m5t-notif-markall:hover { text-decoration: underline; }
+    .m5t-notif-clearall { color: var(--color-text-subtle, #6C7C9A); }
+    .m5t-notif-clearall:hover { color: var(--color-danger-strong, #DC2626); }
+
+    /* Grid, not block: the dismiss control gets its own column so it can never overlap a
+       long title the way an absolutely-positioned one would. */
+    .m5t-notif-item { display: grid; grid-template-columns: 1fr auto; column-gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--color-surface-2, #EAF0F7); text-decoration: none; color: inherit; transition: background .14s ease, opacity .18s ease, transform .18s ease; }
     .m5t-notif-item:last-child { border-bottom: 0; }
     .m5t-notif-item:hover { background: var(--color-surface, #F7FAFD); }
     .m5t-notif-item[data-read="false"] { background: var(--color-accent-soft, rgba(0,114,186,0.06)); }
+    /* Leaving state for a single dismissal, so the row slides out instead of vanishing. */
+    .m5t-notif-item[data-leaving="true"] { opacity: 0; transform: translateX(12px); pointer-events: none; }
+    html.ff-no-animations .m5t-notif-item { transition: none; }
+    @media (prefers-reduced-motion: reduce) { .m5t-notif-item { transition: none; } }
+    .m5t-notif-main { grid-column: 1; min-width: 0; }
+    .m5t-notif-link { text-decoration: none; color: inherit; display: block; }
+    .m5t-notif-link:hover .m5t-notif-title { text-decoration: underline; }
     .m5t-notif-title { font-weight: 600; font-size: 0.86rem; margin-bottom: 2px; }
     .m5t-notif-body { font-size: 0.78rem; color: var(--color-text-muted, #4A5A78); line-height: 1.4; }
     .m5t-notif-time { font-size: 0.7rem; color: var(--color-text-subtle, #6C7C9A); margin-top: 4px; }
+    .m5t-notif-dismiss { grid-column: 2; grid-row: 1 / -1; align-self: start; appearance: none; border: 0; background: transparent; color: var(--color-text-subtle, #6C7C9A); cursor: pointer; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 15px; line-height: 1; opacity: 0; transition: opacity .14s ease, background .14s ease, color .14s ease; }
+    .m5t-notif-item:hover .m5t-notif-dismiss, .m5t-notif-dismiss:focus-visible { opacity: 1; }
+    .m5t-notif-dismiss:hover { background: var(--color-surface-2, #EAF0F7); color: var(--color-danger-strong, #DC2626); }
+    /* Touch has no hover — never hide the only way to dismiss a row on a phone. */
+    @media (hover: none) { .m5t-notif-dismiss { opacity: 1; } }
     .m5t-notif-empty { padding: 24px 14px; text-align: center; font-size: 0.82rem; color: var(--color-text-subtle, #6C7C9A); }
+
+    /* Skeleton rows while loading: the panel opens into its real shape instead of
+       flashing a centred "Loading…" and then reflowing into a list. */
+    .m5t-notif-skel { padding: 12px 14px; border-bottom: 1px solid var(--color-surface-2, #EAF0F7); }
+    .m5t-notif-skel span { display: block; height: 9px; border-radius: 999px; background: var(--color-surface-2, #EAF0F7); animation: m5t-notif-shimmer 1.3s ease-in-out infinite; }
+    .m5t-notif-skel span + span { margin-top: 7px; }
+    .m5t-notif-skel span:nth-child(1) { width: 62%; }
+    .m5t-notif-skel span:nth-child(2) { width: 88%; }
+    .m5t-notif-skel span:nth-child(3) { width: 34%; }
+    @keyframes m5t-notif-shimmer { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+    html.ff-no-animations .m5t-notif-skel span { animation: none; }
+    @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_a88b26c3.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_a88b26c3.css">
+  <script type="module" crossorigin src="assets/index_a8aec04e.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_a8aec04e.css">
 </head>
 <body>
   <div id="app-shell">
@@ -97,7 +138,9 @@
         <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
         <span id="m5t-notif-badge" hidden>0</span>
       </button>
-      <div id="m5t-notif-panel" role="menu" hidden></div>
+      <!-- Closed state is data-open="false" rather than the `hidden` attribute, so the
+           open/close can transition (see the panel's CSS above). -->
+      <div id="m5t-notif-panel" role="menu" data-open="false"></div>
     </div>
     <div id="app-content">
       <!-- Contextual top sub-nav: shown only when the active section has sub-items.
