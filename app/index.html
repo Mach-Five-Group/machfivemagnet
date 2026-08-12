@@ -106,10 +106,16 @@
     .m5t-notif-title { font-weight: 600; font-size: 0.86rem; margin-bottom: 2px; }
     .m5t-notif-body { font-size: 0.78rem; color: var(--color-text-muted, #4A5A78); line-height: 1.4; }
     .m5t-notif-time { font-size: 0.7rem; color: var(--color-text-subtle, #6C7C9A); margin-top: 4px; }
-    .m5t-notif-dismiss { grid-column: 2; grid-row: 1 / -1; align-self: start; appearance: none; border: 0; background: transparent; color: var(--color-text-subtle, #6C7C9A); cursor: pointer; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 15px; line-height: 1; opacity: 0; transition: opacity .14s ease, background .14s ease, color .14s ease; }
+    /* A labelled control, not a glyph. Matches .m5t-notif-clearall's type scale exactly,
+       because it is the same verb at a different scope and should read that way. Sized by
+       its padding rather than a fixed 24px box, so the label is never clipped. */
+    .m5t-notif-dismiss { grid-column: 2; grid-row: 1 / -1; align-self: start; appearance: none; border: 0; background: transparent; color: var(--color-text-subtle, #6C7C9A); cursor: pointer; padding: 3px 8px; border-radius: 999px; font: inherit; font-size: 0.72rem; font-weight: 600; line-height: 1.4; white-space: nowrap; opacity: 0; transition: opacity .14s ease, background .14s ease, color .14s ease; }
     .m5t-notif-item:hover .m5t-notif-dismiss, .m5t-notif-dismiss:focus-visible { opacity: 1; }
-    .m5t-notif-dismiss:hover { background: var(--color-surface-2, #EAF0F7); color: var(--color-danger-strong, #DC2626); }
-    /* Touch has no hover — never hide the only way to dismiss a row on a phone. */
+    /* Deliberately NOT the danger red that .m5t-notif-clearall uses. Clearing one row is
+       reversible-feeling and routine; clearing every row at once is the one that should
+       give you pause. Same verb, different weight of consequence. */
+    .m5t-notif-dismiss:hover { background: var(--color-surface-2, #EAF0F7); color: var(--color-primary-600, #0072BA); }
+    /* Touch has no hover — never hide the only way to clear a row on a phone. */
     @media (hover: none) { .m5t-notif-dismiss { opacity: 1; } }
     .m5t-notif-empty { padding: 24px 14px; text-align: center; font-size: 0.82rem; color: var(--color-text-subtle, #6C7C9A); }
 
@@ -125,8 +131,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_773e2c4f.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_773e2c4f.css">
+  <script type="module" crossorigin src="assets/index_2c4db7e6.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_2c4db7e6.css">
 </head>
 <body>
   <div id="app-shell">
