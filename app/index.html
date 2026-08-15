@@ -66,7 +66,10 @@
        org-context-banner's own buttons whenever that banner is showing, since the
        banner's height (and even which line its buttons land on, once it wraps) isn't
        a fixed value this stylesheet can know in advance. */
-    #m5t-notif-bell { position: fixed; top: 14px; right: 20px; z-index: 90; }
+    /* Above the sticky sub-nav (z-index 1000), not below it. The bell's 14-54px band
+       sits entirely inside the bar's 0-61px band, so at z-index 90 it was painted behind
+       the bar on every page that shows one — invisible and unclickable. */
+    #m5t-notif-bell { position: fixed; top: 14px; right: 20px; z-index: 1100; }
     #m5t-notif-bell-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--color-border, #D4DCE8); background: var(--color-bg, #fff); color: var(--color-text-muted, #4A5A78); cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow-sm, 0 1px 3px rgba(11,18,32,0.08)); }
     #m5t-notif-bell-btn:hover { color: var(--color-primary-600, #0072BA); border-color: var(--color-primary-600, #0072BA); }
     #m5t-notif-badge { position: absolute; top: -4px; right: -4px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 999px; background: var(--color-danger-strong, #DC2626); color: #fff; font-size: 0.62rem; font-weight: 700; line-height: 16px; text-align: center; }
@@ -131,8 +134,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_5581af2f.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_5581af2f.css">
+  <script type="module" crossorigin src="assets/index_c4d93306.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_c4d93306.css">
 </head>
 <body>
   <div id="app-shell">
