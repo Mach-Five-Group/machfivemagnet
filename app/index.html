@@ -69,8 +69,28 @@
     /* Above the sticky sub-nav (z-index 1000), not below it. The bell's 14-54px band
        sits entirely inside the bar's 0-61px band, so at z-index 90 it was painted behind
        the bar on every page that shows one — invisible and unclickable. */
-    #m5t-notif-bell { position: fixed; top: 14px; right: 20px; z-index: 1100; }
-    #m5t-notif-bell-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--color-border, #D4DCE8); background: var(--color-bg, #fff); color: var(--color-text-muted, #4A5A78); cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow-sm, 0 1px 3px rgba(11,18,32,0.08)); }
+    /* Bell geometry as tokens, because the nav needs to reserve exactly this much room
+       at its right end and a second hardcoded copy of these numbers is how the gutter
+       silently stops matching the bell. notificationBell.js does NOT duplicate the size —
+       it measures the button (getBoundingClientRect) — so these two rules are the only
+       place the bell's box is stated. */
+    #app-shell { --m5t-bell-right: 20px; --m5t-bell-size: 40px; }
+    #m5t-notif-bell { position: fixed; top: 14px; right: var(--m5t-bell-right); z-index: 1100; }
+    /* THE GUTTER. The bell is fixed at the viewport's right edge and the sub-nav's right
+       edge is the same edge, so without this the last tab runs underneath it: on Settings
+       (5 tabs) the "Notifications" label was visibly truncated, and on every tabbed
+       section ~40px of the last tab's hit area was dead — elementFromPoint at the bell's
+       centre returned the bell, not the tab.
+       Spatial, NOT a stacking change: z-index 1100 is deliberate (see below) and lowering
+       it regresses the bell to invisible-and-unclickable behind the bar.
+       Scoped to .has-side-nav because that class is toggled by the same boolean as the
+       bell's own visibility (updateSideNavForRoute), so the gutter exists exactly when
+       the bell does — and never in client-sse-console, which reuses this component but
+       has no bell and does not use this shell. */
+    #app-shell.has-side-nav #m5t-sub-nav {
+      --m5t-nav-end-gutter: calc(var(--m5t-bell-right) + var(--m5t-bell-size) + 8px);
+    }
+    #m5t-notif-bell-btn { position: relative; width: var(--m5t-bell-size); height: var(--m5t-bell-size); border-radius: 50%; border: 1px solid var(--color-border, #D4DCE8); background: var(--color-bg, #fff); color: var(--color-text-muted, #4A5A78); cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow-sm, 0 1px 3px rgba(11,18,32,0.08)); }
     #m5t-notif-bell-btn:hover { color: var(--color-primary-600, #0072BA); border-color: var(--color-primary-600, #0072BA); }
     #m5t-notif-badge { position: absolute; top: -4px; right: -4px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 999px; background: var(--color-danger-strong, #DC2626); color: #fff; font-size: 0.62rem; font-weight: 700; line-height: 16px; text-align: center; }
     #m5t-notif-badge[hidden] { display: none; }
@@ -134,8 +154,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_daf59b37.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_daf59b37.css">
+  <script type="module" crossorigin src="assets/index_71ef4147.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_71ef4147.css">
 </head>
 <body>
   <div id="app-shell">
