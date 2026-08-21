@@ -26,12 +26,30 @@
        (body { background: var(--color-gray-500); color-scheme: dark }) — auth pages
        escape it via .auth-container; the app shell does the same here so section
        pages render on a light surface instead of the gray body bleeding through. */
+    /* THE APP SHELL DOES NOT SCROLL — the content pane inside it does.
+       The chrome (side nav, org-context banner, contextual top bar) stays put and #app
+       gets its own scrollport, which is how Gmail/Stripe keep a header from ever covering
+       content. The previous arrangement scrolled the whole document under a
+       position:sticky bar, so page headings passed underneath it; reserving space with
+       padding does not fix that, because a sticky bar already occupies flow space at rest
+       and the content simply scrolls past it anyway (measured before this change).
+       100dvh, with 100vh first as the fallback: on iOS Safari 100vh is the LARGEST
+       viewport (toolbars retracted), so a 100vh shell is taller than the visible area and
+       the bottom of the pane sits under the browser chrome. dvh tracks the actual box. */
     #app-shell {
-      min-height: 100vh;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
       background: var(--color-surface, #F4F7FB);
       color: var(--color-text, #0B1220);
       color-scheme: light;
     }
+    /* Column: banner (when shown) and the top bar keep their height, #app takes the rest.
+       min-height:0 on both — a flex child will not shrink below its content without it,
+       which would push the pane past the shell and restore the very overflow this
+       removes. */
+    #app-content { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+    #app { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; }
     /* Dark mode toggle (main.js) sets data-theme="dark" on <html> — without this,
        #app-shell's own color-scheme:light above would keep pinning native form
        controls/scrollbars to light even after the color tokens flip to dark. */
@@ -154,8 +172,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_0d55027e.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_0d55027e.css">
+  <script type="module" crossorigin src="assets/index_0d2f8f6d.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_0d2f8f6d.css">
 </head>
 <body>
   <div id="app-shell">
