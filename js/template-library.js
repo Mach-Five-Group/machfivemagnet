@@ -40,7 +40,7 @@
   function cardHTML(t, teaser) {
     var caps = captures(t);
     return (
-      '<div class="m5-tpl-card' + (teaser ? "" : " m5-reveal") + '" data-cat="' + esc(t.category) + '">' +
+      '<div class="m5-tpl-card" data-cat="' + esc(t.category) + '">' +
         (t.featured ? '<span class="m5-tpl-badge">Most Popular</span>' : "") +
         '<span class="m5-tpl-icon"><span class="material-symbols-rounded" aria-hidden="true">' + esc(t.icon || "smart_toy") + "</span></span>" +
         '<div class="font-semibold">' + esc(t.name) + "</div>" +
