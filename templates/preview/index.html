@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Template Preview</title>
+  <style>
+    /* Iframe shell for one live template magnet (inline mode renders into the
+       mount below). Kept bare on purpose: the magnet is the whole page. */
+    html, body { margin: 0; min-height: 100%; background: #F4F7FB; }
+    body { display: flex; align-items: flex-start; justify-content: center; padding: 20px 14px; box-sizing: border-box; }
+    [data-m5m-inline] { width: 100%; max-width: 460px; }
+  </style>
+</head>
+<body>
+  <div data-m5m-inline></div>
+  <script>
+    // The appguid arrives as a query param. Strict UUID shape only — this value
+    // lands in a script src, so nothing else may pass.
+    (function () {
+      var m = (location.search.match(/[?&]appguid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i) || [])[1];
+      if (!m) return;
+      var s = document.createElement("script");
+      s.src = "https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=" + m;
+      s.async = true;
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>
