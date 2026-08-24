@@ -10,10 +10,7 @@
   function getPreferredTheme() {
     var saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "light" || saved === "dark") return saved;
-    var prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return prefersDark ? "dark" : "light";
+    return "light";
   }
 
   // Apply immediately to avoid flash
