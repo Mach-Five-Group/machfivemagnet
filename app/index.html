@@ -134,6 +134,10 @@
     /* Grid, not block: the dismiss control gets its own column so it can never overlap a
        long title the way an absolutely-positioned one would. */
     .m5t-notif-item { display: grid; grid-template-columns: 1fr auto; column-gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--color-surface-2, #EAF0F7); text-decoration: none; color: inherit; transition: background .14s ease, opacity .18s ease, transform .18s ease; }
+    /* Restated because display:grid above beats the UA's [hidden] rule, and
+       core/listExpand.js hides capped rows with setAttribute('hidden') — the
+       notification panel is capped at core/notificationBell.js. */
+    .m5t-notif-item[hidden] { display: none; }
     .m5t-notif-item:last-child { border-bottom: 0; }
     .m5t-notif-item:hover { background: var(--color-surface, #F7FAFD); }
     .m5t-notif-item[data-read="false"] { background: var(--color-accent-soft, rgba(0,114,186,0.06)); }
@@ -172,8 +176,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_c19dc354.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_c19dc354.css">
+  <script type="module" crossorigin src="assets/index_f550712f.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_f550712f.css">
 </head>
 <body>
   <div id="app-shell">
