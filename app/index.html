@@ -176,8 +176,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_f6dbd0c1.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_f6dbd0c1.css">
+  <script type="module" crossorigin src="assets/index_92e91c0e.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_92e91c0e.css">
 </head>
 <body>
   <div id="app-shell">
@@ -207,6 +207,34 @@
     // DEBUG: Check localStorage BEFORE anything loads
     console.log('[DEBUG] Page load - mvv before neodigm:', localStorage.getItem('mvv') ? 'EXISTS' : 'NULL');
 
+    // ── NATIVE FETCH CAPTURE — THIS MUST STAY ABOVE THE NEODIGM TAG ────────────────
+    //
+    // mvvLegit patches window.fetch (neodigm55 v5.0.0, #overFetch, ~line 1037) and its
+    // wrapper ends with:
+    //
+    //     if (response.status === 401 || response.status === 403) {
+    //       if (mvvLegit.#state == mvvLegit.#states.AUTH) mvvLegit.doSignout(false)
+    //     }
+    //
+    // Any 403 from ANY host ends the session — the Bearer injection above it is gated on
+    // the configured BASE, but this check is not. doSignout(false) still navigates to
+    // splash; the flag only gates a commented-out hard reload. That is the whole bug: an
+    // owner with no connected ad accounts hits a legitimately-403 endpoint and is logged
+    // out of the product.
+    //
+    // The check lives inside mvvLegit's own promise chain, so wrapping window.fetch in
+    // either direction cannot suppress it — an outer wrapper still delegates INTO the
+    // chain that does the signout. The only way out is not to route those requests
+    // through the patched fetch at all, and that requires a reference taken before the
+    // patch exists. This is that reference.
+    //
+    // POSITION IS LOAD-BEARING. The neodigm tag below is a blocking classic script, so it
+    // has not run yet and window.fetch is still native here. Move this below it and the
+    // capture silently returns the PATCHED fetch: every guarded request goes back through
+    // the interceptor, the bug returns in full, and nothing fails. A test asserts this
+    // ordering for exactly that reason (navGeneration.native-fetch.test.js).
+    window.__m5tNativeFetch = window.fetch.bind(window);
+
     // Neodigm 55 configuration - minimal config to match working apps
     let neodigmOptCustom = { mvvLegit: true };
   </script>
@@ -219,6 +247,15 @@
   <script>
     // DEBUG: Check localStorage AFTER neodigm loads but BEFORE main.js
     console.log('[DEBUG] Before main.js - mvv:', localStorage.getItem('mvv') ? 'EXISTS' : 'NULL');
+
+    // PROBE (2026-08-24): where does the requested route actually die?
+    // This position is the only one that can answer it — AFTER the neodigm CDN (a
+    // blocking classic script, so mvvLegit is already loaded) and BEFORE main.js (a
+    // module, deferred by spec until the document is parsed). If the hash still reads
+    // the requested route here, the library has NOT stripped it at load time and a
+    // capture inside main.js is viable; if it already reads #/splash or is empty, the
+    // capture must move ahead of the CDN tag above. Load #/team and read this line.
+    console.log('[DEBUG] Before main.js - hash:', JSON.stringify(location.hash), 'search:', JSON.stringify(location.search));
   </script>
 
   <!-- Application Entry Point -->
