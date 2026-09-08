@@ -2,7 +2,7 @@
    see tools/examples-shooter/record-phone.js) cycling inside the floating phone. The phone
    spins to switch scenarios; the caption, dots, and glow swap at the spin's midpoint while
    the screen faces away. Clips attach only on desktop, without reduced motion or save-data,
-   and only after the hero typewriter finishes (m5:hero-typed) so the two never compete. */
+   attaching immediately on load. */
 (function () {
   "use strict";
 
@@ -12,7 +12,9 @@
   var videos = Array.prototype.slice.call(scene.querySelectorAll("video[data-scn]"));
   var pages = document.querySelectorAll("[data-hero-pages] img");
   var urlBar = document.querySelector("[data-hero-url]");
-  var scenes = Array.prototype.slice.call(document.querySelectorAll("[data-hero-scenes] video"));
+  var scenes = Array.prototype.slice.call(document.querySelectorAll("[data-hero-scenes] img"));
+  var timerEl = document.querySelector("[data-hero-timer]");
+  var timerArc = timerEl && timerEl.querySelector(".m5-hero-timer-arc");
   if (!phone || !videos.length) return;
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -21,6 +23,7 @@
   if (reduced || small || saveData) return; // the static poster phone stands
 
   var INTERVAL = 9500;
+  if (timerEl) timerEl.style.setProperty("--hero-timer-ms", INTERVAL + "ms");
   var SPIN_MS = 850;
   var index = 0;
   var timer = null;
@@ -45,10 +48,7 @@
       if (active && urlBar) urlBar.textContent = img.getAttribute("data-url") || "";
     });
     scenes.forEach(function (v) {
-      var active = v.getAttribute("data-scn") === key;
-      v.classList.toggle("is-active", active);
-      if (active && inView && !document.hidden) tryPlay(v);
-      else v.pause();
+      v.classList.toggle("is-active", v.getAttribute("data-scn") === key);
     });
   }
 
@@ -66,16 +66,23 @@
     }, SPIN_MS + 50);
   }
 
-  function tick() { spinTo((index + 1) % videos.length); }
+  function tick() { sweepStart(); spinTo((index + 1) % videos.length); }
 
+  function sweepStart() {
+    if (!timerEl) return;
+    timerEl.classList.remove("is-paused");
+    timerEl.classList.add("is-run");
+    if (timerArc) { timerArc.style.animation = "none"; void timerArc.offsetWidth; timerArc.style.animation = ""; }
+  }
   function schedule() {
     if (timer || !started || !inView || document.hidden) return;
     timer = window.setInterval(tick, INTERVAL);
+    sweepStart(); // a fresh full interval begins now
   }
   function halt() {
     if (timer) { window.clearInterval(timer); timer = null; }
+    if (timerEl) timerEl.classList.add("is-paused");
     videos.forEach(function (v) { v.pause(); });
-    scenes.forEach(function (v) { v.pause(); });
   }
 
   function attach() {
@@ -92,19 +99,13 @@
     // the ghosted landing pages + scene footage render lg+ only; don't fetch them below that
     if (window.matchMedia("(min-width: 1024px)").matches) {
       pages.forEach(function (img) { img.src = img.getAttribute("data-src"); });
-      scenes.forEach(function (v) {
-        var src = document.createElement("source");
-        src.src = v.getAttribute("data-src");
-        src.type = "video/mp4";
-        v.appendChild(src);
-        v.load();
-      });
+      scenes.forEach(function (v) { v.src = v.getAttribute("data-src"); });
     }
     applyActive();
     schedule();
   }
-  document.addEventListener("m5:hero-typed", attach);
-  window.setTimeout(attach, 16000); // safety net if the reveal never fires
+  // Attach right away: the backdrop no longer waits out the typewriter.
+  attach();
 
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(function (entries) {
