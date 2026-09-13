@@ -20,6 +20,15 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var small = window.matchMedia("(max-width: 767px)").matches;
   var saveData = navigator.connection && navigator.connection.saveData;
+  if (small && !saveData) {
+    // Phones skip the rotator but still get a backdrop: the first scene as a
+    // static ambient photo (mobile-sized file), no videos, no timer.
+    var still = document.querySelector('.m5-hero-scenes img[data-scn="apex"]');
+    if (still) {
+      still.src = still.getAttribute("data-src-m") || still.getAttribute("data-src");
+      still.classList.add("is-active");
+    }
+  }
   if (reduced || small || saveData) return; // the static poster phone stands
 
   var INTERVAL = 9500;
@@ -96,10 +105,13 @@
       v.load();
     });
     videos[0].addEventListener("playing", function () { scene.classList.add("is-live"); }, { once: true });
-    // the ghosted landing pages + scene footage render lg+ only; don't fetch them below that
+    // the ghosted landing pages render lg+ only; scenes render at every width,
+    // full-res on lg+ and the mobile files on tablets (phones return earlier).
     if (window.matchMedia("(min-width: 1024px)").matches) {
       pages.forEach(function (img) { img.src = img.getAttribute("data-src"); });
       scenes.forEach(function (v) { v.src = v.getAttribute("data-src"); });
+    } else {
+      scenes.forEach(function (v) { v.src = v.getAttribute("data-src-m") || v.getAttribute("data-src"); });
     }
     applyActive();
     schedule();
