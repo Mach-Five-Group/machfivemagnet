@@ -57,7 +57,7 @@
     html[data-theme="dark"] #app-shell { color-scheme: dark; }
     /* Authoritative content gutter (high-specificity + unlayered so it can't lose to
        the global `* { padding: 0 }` reset). Section pages wrap content in .page-shell. */
-    #app-shell .page-shell { padding: 40px 48px; }
+    #app-shell .page-shell:not(.mag-studio) { padding: 40px 48px; }
     #app-shell.has-side-nav #app-content {
       margin-left: var(--sidenav-width, 260px);
       transition: margin-left 0.2s ease;
@@ -67,7 +67,7 @@
     }
     @media (max-width: 768px) {
       #app-shell.has-side-nav #app-content { margin-left: 0; }
-      #app-shell .page-shell { padding: 24px 20px; }
+      #app-shell .page-shell:not(.mag-studio) { padding: 24px 20px; }
       /* Leave a gutter for the floating hamburger when a sub-nav is showing. */
       #app-shell.has-side-nav.has-sub-nav #m5t-sub-nav { padding-left: 56px; }
       /* Drop the sub-nav below the side-nav drawer (z-90) + scrim (z-88) so the open
@@ -177,8 +177,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_8064421c.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_8064421c.css">
+  <script type="module" crossorigin src="assets/index_820cd431.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_820cd431.css">
 </head>
 <body>
   <div id="app-shell">
