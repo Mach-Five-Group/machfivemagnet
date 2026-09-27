@@ -109,6 +109,18 @@
     #app-shell.has-side-nav #m5t-sub-nav {
       --m5t-nav-end-gutter: calc(var(--m5t-bell-right) + var(--m5t-bell-size) + 8px);
     }
+    /* Untabbed pages no longer reserve an empty bar. Keep their actual header
+       clear of the persistent bell and, on mobile, the menu button. A client
+       banner already owns those controls' space and needs no extra gutter. */
+    #app-shell.has-side-nav:not(.has-sub-nav) #app-content:not(:has(#org-context-banner:not([hidden]))) .page-header {
+      padding-right: calc(var(--m5t-bell-right) + var(--m5t-bell-size));
+      min-height: var(--m5t-bell-size);
+    }
+    @media (max-width: 768px) {
+      #app-shell.has-side-nav:not(.has-sub-nav) #app-content:not(:has(#org-context-banner:not([hidden]))) .page-header {
+        padding-left: 44px;
+      }
+    }
     #m5t-notif-bell-btn { position: relative; width: var(--m5t-bell-size); height: var(--m5t-bell-size); border-radius: 50%; border: 1px solid var(--color-border, #D4DCE8); background: var(--color-bg, #fff); color: var(--color-text-muted, #4A5A78); cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow-sm, 0 1px 3px rgba(11,18,32,0.08)); }
     #m5t-notif-bell-btn:hover { color: var(--color-primary-600, #0072BA); border-color: var(--color-primary-600, #0072BA); }
     #m5t-notif-badge { position: absolute; top: -4px; right: -4px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 999px; background: var(--color-danger-strong, #DC2626); color: #fff; font-size: 0.62rem; font-weight: 700; line-height: 16px; text-align: center; }
@@ -177,8 +189,8 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_820cd431.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_820cd431.css">
+  <script type="module" crossorigin src="assets/index_1b6dfeb1.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_1b6dfeb1.css">
 </head>
 <body>
   <div id="app-shell">
