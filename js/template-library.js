@@ -28,13 +28,15 @@
   }
 
   function captures(t) {
-    var seen = [];
+    var fields = new Map();
     (t.steps || []).forEach(function (s) {
       (s.step_columns || []).forEach(function (c) {
-        if (c && seen.indexOf(c) === -1) seen.push(c);
+        if (!c || fields.has(c)) return;
+        var label = FIELD_LABELS[c] || (s.step_answer && s.step_answer.label);
+        fields.set(c, label || 'Additional answer');
       });
     });
-    return seen.map(function (c) { return FIELD_LABELS[c] || c; });
+    return Array.from(fields.values());
   }
 
   function cardHTML(t, teaser) {
@@ -78,8 +80,9 @@
           '<p class="m5-tpl-modal__line"><span class="material-symbols-rounded" aria-hidden="true">list_alt</span>' + (t.steps || []).length + " steps</p>" +
           (caps.length ? '<p class="m5-tpl-modal__line"><span class="material-symbols-rounded" aria-hidden="true">badge</span>Captures ' + esc(caps.join(", ")) + "</p>" : "") +
           '<p class="m5-tpl-modal__hint">This preview is the real template running live. Try it. Nothing you type here reaches a business.</p>' +
+          (t.slug === 'assistant_welcome' ? '<p><a class="m5-tpl-cta m5-tpl-cta--ghost" href="/examples/northline/">Try it on an example website</a></p>' : '') +
           '<div class="m5-tpl-modal__ctas">' +
-            '<a class="m5-tpl-cta" href="' + APP + '#/signup">Start With This Template</a>' +
+            '<a class="m5-tpl-cta" href="' + APP + '?template=' + encodeURIComponent(t.slug) + '#/templates">Use this template</a>' +
             '<a class="m5-tpl-cta m5-tpl-cta--ghost" href="' + APP + '#/templates">Browse in the App</a>' +
           "</div>" +
         "</div>" +

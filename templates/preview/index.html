@@ -24,6 +24,10 @@
       var s = document.createElement("script");
       s.src = "https://machfivemagnet-saas.onrender.com/m5t/v5/coreSnippet?appguid=" + m;
       s.async = true;
+      s.onload = function () {
+        // Open floating starters in the preview; inline starters remain inline.
+        if (window.MachFiveMagnet) window.MachFiveMagnet.open();
+      };
       document.body.appendChild(s);
     })();
   </script>
