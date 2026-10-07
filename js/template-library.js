@@ -28,22 +28,30 @@
   }
 
   function captures(t) {
-    var fields = new Map();
-    (t.steps || []).forEach(function (s) {
-      (s.step_columns || []).forEach(function (c) {
-        if (!c || fields.has(c)) return;
-        var label = FIELD_LABELS[c] || (s.step_answer && s.step_answer.label);
-        fields.set(c, label || 'Additional answer');
+    var seen = new Set(), labels = [];
+    (t.steps || []).forEach(function (step) {
+      (step.step_columns || []).forEach(function (key) {
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        var authored = step.step_answer && step.step_answer.label;
+        labels.push(authored || FIELD_LABELS[key] || 'Additional answer');
       });
     });
-    return Array.from(fields.values());
+    return labels;
+  }
+  function templateHref(t) {
+    return APP + '?template=' + encodeURIComponent(t.slug) + '#/templates';
+  }
+  function exampleHref(t) {
+    var href = (window.M5M_TEMPLATE_EXAMPLES || {})[t.slug];
+    return typeof href === 'string' && /^\/examples\/[a-z0-9-]+\/$/.test(href) ? href : '';
   }
 
   function cardHTML(t, teaser) {
-    var caps = captures(t);
+    var example = exampleHref(t);
     return (
       '<div class="m5-tpl-card" data-cat="' + esc(t.category) + '">' +
-        (t.featured ? '<span class="m5-tpl-badge">Most Popular</span>' : "") +
+        (t.featured ? '<span class="m5-tpl-badge">Featured</span>' : "") +
         '<span class="m5-tpl-icon"><span class="material-symbols-rounded" aria-hidden="true">' + esc(t.icon || "smart_toy") + "</span></span>" +
         '<div class="font-semibold">' + esc(t.name) + "</div>" +
         '<p class="mt-2 text-sm text-muted">' + esc(t.description) + "</p>" +
@@ -55,21 +63,25 @@
           '<div class="m5-tpl-actions">' +
             '<button type="button" class="m5-tpl-open" data-open="' + esc(t.slug) + '">' +
               '<span class="material-symbols-rounded" aria-hidden="true">play_circle</span>See It Run</button>' +
+          (example ? '<a class="m5-tpl-open" href="' + example + '">Try on a website →</a>' : '') +
           "</div>") +
       "</div>"
     );
   }
 
   // ── detail modal (library page): live preview iframe + the facts ───────────
+  var returnFocus = null, previousOverflow = "";
   function openModal(t) {
     closeModal();
+    returnFocus = document.activeElement;
+    previousOverflow = document.body.style.overflow;
     var caps = captures(t);
     var wrap = document.createElement("div");
     wrap.className = "m5-tpl-modal";
     wrap.innerHTML =
       '<div class="m5-tpl-modal__scrim" data-close></div>' +
       '<div class="m5-tpl-modal__panel" role="dialog" aria-modal="true" aria-label="' + esc(t.name) + '">' +
-        '<button type="button" class="m5-tpl-modal__close" data-close aria-label="Close">&times;</button>' +
+        '<div class="m5-tpl-modal__toolbar"><span>Try the conversation</span><button type="button" class="m5-tpl-modal__close" data-close aria-label="Close">&times;</button></div>' +
         '<div class="m5-tpl-modal__preview">' +
           '<iframe title="' + esc(t.name) + ' preview" loading="eager" src="/templates/preview/?appguid=' + esc(t.appguid) + '"></iframe>' +
         "</div>" +
@@ -79,11 +91,10 @@
           "<p>" + esc(t.description) + "</p>" +
           '<p class="m5-tpl-modal__line"><span class="material-symbols-rounded" aria-hidden="true">list_alt</span>' + (t.steps || []).length + " steps</p>" +
           (caps.length ? '<p class="m5-tpl-modal__line"><span class="material-symbols-rounded" aria-hidden="true">badge</span>Captures ' + esc(caps.join(", ")) + "</p>" : "") +
-          '<p class="m5-tpl-modal__hint">This preview is the real template running live. Try it. Nothing you type here reaches a business.</p>' +
-          (t.slug === 'assistant_welcome' ? '<p><a class="m5-tpl-cta m5-tpl-cta--ghost" href="/examples/northline/">Try it on an example website</a></p>' : '') +
+          '<p class="m5-tpl-modal__hint">Use sample details to try the conversation. Customize the wording, look and delivery settings in the builder.</p>' +
           '<div class="m5-tpl-modal__ctas">' +
-            '<a class="m5-tpl-cta" href="' + APP + '?template=' + encodeURIComponent(t.slug) + '#/templates">Use this template</a>' +
-            '<a class="m5-tpl-cta m5-tpl-cta--ghost" href="' + APP + '#/templates">Browse in the App</a>' +
+            '<a class="m5-tpl-cta" href="' + templateHref(t) + '">Use this template</a>' +
+            (exampleHref(t) ? '<a class="m5-tpl-cta m5-tpl-cta--ghost" href="' + exampleHref(t) + '">Try on a website</a>' : '<a class="m5-tpl-cta m5-tpl-cta--ghost" href="' + APP + '#/templates">Browse in the app</a>') +
           "</div>" +
         "</div>" +
       "</div>";
@@ -93,12 +104,24 @@
       if (e.target.closest("[data-close]")) closeModal();
     });
     document.addEventListener("keydown", onKey);
+    wrap.querySelector(".m5-tpl-modal__close").focus();
   }
-  function onKey(e) { if (e.key === "Escape") closeModal(); }
+  function onKey(e) {
+    if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
+    if (e.key !== 'Tab') return;
+    var panel = document.querySelector('.m5-tpl-modal__panel');
+    if (!panel) return;
+    var nodes = Array.from(panel.querySelectorAll('button, a[href], iframe')).filter(function(el){ return !el.disabled; });
+    var first = nodes[0], last = nodes[nodes.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
   function closeModal() {
     var m = document.querySelector(".m5-tpl-modal");
     if (m) m.remove();
-    document.body.style.overflow = "";
+    if (m) document.body.style.overflow = previousOverflow;
+    if (returnFocus && returnFocus.isConnected) returnFocus.focus();
+    returnFocus = null;
     document.removeEventListener("keydown", onKey);
   }
 
@@ -120,22 +143,22 @@
           return '<button type="button" class="m5-tpl-filter" data-cat="' + c + '" aria-pressed="' + (c === "all") + '">' +
             (c === "all" ? "All" : CATEGORIES[c]) + '<span>' + counts[c] + "</span></button>";
         }).join("");
-      filters.addEventListener("click", function (e) {
+      filters.onclick = function (e) {
         var chip = e.target.closest("[data-cat]");
         if (!chip) return;
         filters.querySelectorAll("[data-cat]").forEach(function (c) {
           c.setAttribute("aria-pressed", String(c === chip));
         });
         renderGrid(chip.dataset.cat);
-      });
+      };
     }
 
-    grid.addEventListener("click", function (e) {
+    grid.onclick = function (e) {
       var btn = e.target.closest("[data-open]");
       if (!btn) return;
       var t = templates.find(function (x) { return x.slug === btn.dataset.open; });
       if (t) openModal(t);
-    });
+    };
 
     renderGrid("all");
   }
@@ -155,6 +178,8 @@
     });
   }
 
+  var fallback = document.querySelector('[data-template-fallback]');
+  if (fallback) { try { hydrate(JSON.parse(fallback.textContent)); } catch (_) { /* links in baked markup remain usable */ } }
   fetch(API)
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
