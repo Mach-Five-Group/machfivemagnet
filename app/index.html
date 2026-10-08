@@ -189,14 +189,14 @@
     html.ff-no-animations .m5t-notif-skel span { animation: none; }
     @media (prefers-reduced-motion: reduce) { .m5t-notif-skel span { animation: none; } }
   </style>
-  <script type="module" crossorigin src="assets/index_31214391.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index_31214391.css">
+  <script type="module" crossorigin src="assets/index_f07b01dd.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index_f07b01dd.css">
 </head>
 <body>
-  <div id="app-shell">
+  <div id="app-shell" class="workspace-shell">
     <!-- Persona-aware left navigation (web component, lives OUTSIDE #app so route
          renders never destroy it). Hidden until an authenticated route shows it. -->
-    <m5t-side-nav id="m5t-side-nav" hidden></m5t-side-nav>
+    <m5t-side-nav id="m5t-side-nav" data-shell="workspace" hidden></m5t-side-nav>
     <div id="m5t-notif-bell" hidden>
       <button id="m5t-notif-bell-btn" type="button" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
         <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
@@ -209,7 +209,7 @@
     <div id="app-content">
       <!-- Contextual top sub-nav: shown only when the active section has sub-items.
            Reuses m5t-primary-nav (logo hidden; the side-nav owns the brand mark). -->
-      <m5t-primary-nav id="m5t-sub-nav" data-show-secondary="false" data-hide-logo="true" hidden></m5t-primary-nav>
+      <m5t-primary-nav id="m5t-sub-nav" data-shell="workspace" data-show-secondary="false" data-hide-logo="true" hidden></m5t-primary-nav>
       <div id="app"></div>
     </div>
   </div>
