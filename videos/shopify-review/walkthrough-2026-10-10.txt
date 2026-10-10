@@ -1,0 +1,57 @@
+Mach Five Magnet: Shopify reviewer walkthrough
+Captioned sequence of live application captures, October 10, 2026.
+The review store is already installed, connected and signed in. No new subscription or checkout is performed.
+
+00:00 | 1. Open Mach Five Magnet in Shopify
+Live development-store walkthrough. The app is already installed and the reviewer is signed in.
+
+00:12 | 2. Confirm the store and workspace
+Connect the intended Magnet workspace. The Shopify editor receives temporary access to this store’s guides.
+
+00:24 | 3. Review the launch checklist
+The connected workspace has 17 imported sample products. Publication, assignment and theme placement are tracked separately.
+
+00:36 | 4. Choose eligible products
+Control the product types and availability rules. This catalog currently has 11 eligible products for recommendations.
+
+00:47 | 5. Shape the conversation
+The opening product-type question starts the guide. Add preference questions and test matching products before publishing.
+
+00:58 | 6. Match answers to catalog attributes
+This temporary draft question uses Shopify brands. Shopper labels are editable, with a No preference option.
+
+01:10 | 7. Test a recommendation path
+Snowboard plus Hydrogen Vendor produces three matches. Test answer combinations before changing the published guide.
+
+01:21 | 8. Customize the result experience
+Preview a different brand color, choose the result count, and set helpful fallback text. Preview sends no inquiries.
+
+01:33 | 9. Review before publication
+The guide asks for explicit publication confirmation. The sample edits have been restored before this save.
+
+01:44 | 10. Confirm publication
+The save succeeded. Publishing this Magnet is separate from publishing a Shopify theme.
+
+01:54 | 11. Verify the storefront assignment
+This guide is already assigned to the store. Assignment selects what the theme’s Magnet placement displays.
+
+02:05 | 12. Place the guide in a draft theme
+Add the Inline conversation app block in Shopify. This Horizon theme remains a draft; theme publication is a separate action.
+
+02:17 | 13. Start the shopper conversation
+In the Horizon draft preview, the inline guide asks shoppers to choose a product type.
+
+02:29 | 14. Explore matching products
+The published guide presents its configured catalog choices and keeps the shopper answer visible.
+
+02:41 | 15. Review product details
+The result shows the product image, price, currency and online availability with a direct product link.
+
+02:53 | 16. Continue on the Shopify product page
+View product opens the selected Shopify product and variant. This walkthrough stops before cart or checkout.
+
+03:05 | 17. Access the Magnet reporting workspace
+The connected account also opens Magnet reporting. This dedicated review workspace has no lead history.
+
+03:17 | 18. Connect the wider workflow
+CRM, scheduling, advertising and analytics integrations are available to configure. They are not connected here.
